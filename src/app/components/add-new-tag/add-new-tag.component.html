@@ -1,0 +1,63 @@
+<app-client-navbar>
+</app-client-navbar>
+<section class="Contacts-section AddNewTag-contacts-section ManageTag-contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8 contact-body-container">
+                                <div class="card">
+                                    <div class="card-header">Tags</div>
+                                    <div class="card-body">
+                                        <div class="ManageTag-contacts-content">
+                                            <!-- <p>Tags allow you to organize, categorize and label your contacts. To select all your contacts associated with a tag, click on the tag in your "Contacts Tag Cloud".</p> 
+                                         <form style="margin:0 auto; max-width:1042px;" [formGroup]="contactTagsForm" (ngSubmit)="onSubmit()">
+                                                <div class="add-new-tag">
+                                                    <div class="alert alert-danger den" role="alert">
+                                                        <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i> Please enter a tag
+                                                    </div>
+
+                                                    <label>Tag</label>
+                                                    <input type="text" formControlName="tags" id="tags" class="form-control" [ngClass]="{'is-invalid': submitted && f.tags.errors}">
+                                                    <div *ngIf="submitted && f.tags.errors" class="text-danger">
+                                                        <div *ngIf="f.tags.errors.required">first name is required</div>
+                                                    </div>
+                                                </div>
+                                                <button class=" btn btn-primary add-new-tag-butn ">Save</button>
+                                            </form>
+
+                                            <h5 class="ManageTag-heading ">Tags</h5>
+                                            <h6>Tag</h6>  -->
+                                            <app-add-tag-form></app-add-tag-form>
+                                            <div class="ManageTag-bg" *ngFor="let tags of tagList; let index = index;">
+                                                <span> {{tags.tags}}
+                                                <a routerLink="/edit-tag/{{tags.id}}/2"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:#378805;"></i></a>
+                                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top" (confirm)="deleteTags(tags.id)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true" style="color: #FF0000"></i></a></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

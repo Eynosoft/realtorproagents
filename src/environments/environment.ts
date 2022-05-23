@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  name: 'development',
+  hostUrl: 'http://localhost:4200',
+  apiUrl: 'http://localhost/realtorproagents/backend/api',
+  assetsUrl : 'http://localhost/realtorproagents/backend/api/assets/listings/uploads'
+
 };
 
 /*

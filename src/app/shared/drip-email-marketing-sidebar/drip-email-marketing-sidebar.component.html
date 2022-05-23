@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">New</div>
+    <div class="card-body">
+        <div class="sidebar-pannel-email">
+            <div [ngSwitch]="currentRout">
+                <div class="sidebar-row" *ngSwitchCase="'/create-managing-email'">
+                    <ul>
+                        <li><a routerLink="/create-managing-email"><i class="fa fa-envelope" style="font-size:18px;margin: 0 5px;"></i>Create & Manage Emails</a></li>
+                        <li><a routerLink="/drip-email-campaigns-email"><i class="fa fa-list" style="font-size:18px;margin: 0 5px;"></i> Create & Manage Campaigns</a></li>
+                        <li><a routerLink="/schedule-compaign-email"><i class="fa fa-clock-o" style="font-size:18px;margin: 0 5px;"></i> Schedule Contacts for Campaigns</a></li>
+                        <li><a routerLink="/drip-email-setting"><i class="fa fa-gear" style="font-size:18px;margin: 0 5px;"></i> Drip Email Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-row" *ngSwitchCase="'/drip-email-campaigns-email'">
+                    <ul>
+                        <li><a routerLink="/create-managing-email"><i class="fa fa-envelope" style="font-size:18px;margin: 0 5px;"></i>Create & Manage Emails</a></li>
+                        <li><a routerLink="/drip-email-campaigns-email"><i class="fa fa-list" style="font-size:18px;margin: 0 5px;"></i> Create & Manage Campaigns</a></li>
+                        <li><a routerLink="/schedule-compaign-email"><i class="fa fa-clock-o" style="font-size:18px;margin: 0 5px;"></i> Schedule Contacts for Campaigns</a></li>
+                        <li><a routerLink="/drip-email-setting"><i class="fa fa-gear" style="font-size:18px;margin: 0 5px;"></i> Drip Email Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-row" *ngSwitchCase="'/schedule-compaign-email'">
+                    <ul>
+                        <li><a routerLink="/create-managing-email"><i class="fa fa-envelope" style="font-size:18px;margin: 0 5px;"></i>Create & Manage Emails</a></li>
+                        <li><a routerLink="/drip-email-campaigns-email"><i class="fa fa-list" style="font-size:18px;margin: 0 5px;"></i> Create & Manage Campaigns</a></li>
+                        <li><a routerLink="/schedule-compaign-email"><i class="fa fa-clock-o" style="font-size:18px;margin: 0 5px;"></i> Schedule Contacts for Campaigns</a></li>
+                        <li><a routerLink="/drip-email-setting"><i class="fa fa-gear" style="font-size:18px;margin: 0 5px;"></i> Drip Email Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-row" *ngSwitchCase="'/drip-email-setting'">
+                    <ul>
+                        <li><a routerLink="/create-managing-email"><i class="fa fa-envelope" style="font-size:18px;margin: 0 5px;"></i>Create & Manage Emails</a></li>
+                        <li><a routerLink="/drip-email-campaigns-email"><i class="fa fa-list" style="font-size:18px;margin: 0 5px;"></i> Create & Manage Campaigns</a></li>
+                        <li><a routerLink="/schedule-compaign-email"><i class="fa fa-clock-o" style="font-size:18px;margin: 0 5px;"></i> Schedule Contacts for Campaigns</a></li>
+                        <li><a routerLink="/drip-email-setting"><i class="fa fa-gear" style="font-size:18px;margin: 0 5px;"></i> Drip Email Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

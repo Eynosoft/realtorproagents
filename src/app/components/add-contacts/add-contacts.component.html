@@ -1,0 +1,314 @@
+<app-client-navbar></app-client-navbar>
+<section class="Contacts-section Add-Contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <div class="contact-pannel-wrapper">
+
+                                    <div class="card">
+                                        <div class="card-header">Add Contacts</div>
+                                        <div class="card-body">
+                                            <div class="contact-quick-search ">
+                                                <form style="margin:0 auto; max-width:1042px;" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                                                    <!-- <form>  -->
+                                                    <div class="form-group col-md-12 ">
+                                                        <div class="row">
+                                                            <div class="col-md-4 ">
+                                                                <label class="col-form-label">First Name</label>
+                                                                <input type="text" formControlName="first_name" id="first_name" class="form-control" [ngClass]="{'is-invalid': submitted && f.first_name.errors}">
+                                                                <div *ngIf="submitted && f.first_name.errors" class="text-danger">
+                                                                    <div *ngIf="f.first_name.errors.required">first name is required</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 ">
+                                                                <label class="col-form-label">Last Name</label>
+                                                                <input type="text" formControlName="last_name" id="last_name" class="form-control" [ngClass]="{'is-invalid': submitted && f.last_name.errors}">
+                                                                <div *ngIf="submitted && f.last_name.errors" class="text-danger">
+                                                                    <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 ">
+                                                                <label class=" col-form-label ">Company</label>
+                                                                <input type="text" formControlName="company" id="company" class="form-control" [ngClass]="{'is-invalid': submitted && f.company.errors}" placeholder="">
+                                                                <div *ngIf="submitted && f.company.errors" class="text-danger">
+                                                                    <div *ngIf="f.company.errors.required">Company name is required</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group col-md-12 ">
+                                                        <div class="row">
+                                                            <div class="col-md-6 ">
+                                                                <label class=" col-form-label">Address1</label>
+
+                                                                <input type="text" formControlName="address1" id="address1" class="form-control" [ngClass]="{'is-invalid': submitted && f.address1.errors}">
+                                                                <div *ngIf="submitted && f.address1.errors" class="text-danger">
+                                                                    <div *ngIf="f.address1.errors.required">address1 is required</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 ">
+                                                                <label class="col-form-label">Address2</label>
+
+                                                                <input type="text" formControlName="address2" id="address2" class="form-control" [ngClass]="{'is-invalid': submitted && f.address2.errors}">
+                                                                <div *ngIf="submitted && f.address2.errors" class="text-danger">
+                                                                    <div *ngIf="f.address2.errors.required">address2 is required</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 ">
+                                                                <label class=" col-form-label ">City</label>
+                                                                <div class="text-left ">
+                                                                    <input type="text" formControlName="city" id="city" class="form-control" [ngClass]="{'is-invalid': submitted && f.city.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.city.errors" class="text-danger">
+                                                                        <div *ngIf="f.city.errors.required">City is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class="col-sm-6 col-form-label ">State</label>
+                                                                <div class="text-left ">
+
+                                                                    <input type="text" formControlName="state" id="state" class="form-control" [ngClass]="{'is-invalid': submitted && f.state.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.state.errors" class="text-danger">
+                                                                        <div *ngIf="f.state.errors.required">state is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class="col-form-label">Zip</label>
+                                                                <div class="text-left">
+                                                                    <input type="text" formControlName="zip" id="zip" class="form-control" [ngClass]="{'is-invalid': submitted && f.zip.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.zip.errors" class="text-danger">
+                                                                        <div *ngIf="f.zip.errors.required">zip is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 ">
+                                                                <label class=" col-form-label ">Home Phone</label>
+                                                                <div class="text-left">
+
+                                                                    <input type="text" formControlName="home_phone" id="home_phone" class="form-control" [ngClass]="{'is-invalid': submitted && f.home_phone.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.home_phone.errors" class="text-danger">
+                                                                        <div *ngIf="f.home_phone.errors.required">home phone is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label ">Work Phone</label>
+                                                                <div class="text-left ">
+
+                                                                    <input type="text" formControlName="work_phone" id="work_phone" class="form-control" [ngClass]="{'is-invalid': submitted && f.work_phone.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.work_phone.errors" class="text-danger">
+                                                                        <div *ngIf="f.work_phone.errors.required">work phone is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label">Mobile Phone</label>
+                                                                <div class="text-left ">
+
+                                                                    <input type="text" formControlName="mobile_phone" id="mobile_phone" class="form-control" [ngClass]="{'is-invalid': submitted && f.mobile_phone.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.mobile_phone.errors" class="text-danger">
+                                                                        <div *ngIf="f.mobile_phone.errors.required">mobile phone is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12 ">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 ">
+                                                                <label class="col-form-label ">Fax</label>
+                                                                <div class="text-left">
+
+                                                                    <input type="text" formControlName="fax" id="fax" class="form-control" [ngClass]="{'is-invalid': submitted && f.fax.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.fax.errors" class="text-danger">
+                                                                        <div *ngIf="f.fax.errors.required">fax is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label ">Email</label>
+                                                                <div class="text-left">
+
+                                                                    <input type="text" formControlName="email" id="email" class="form-control" [ngClass]="{'is-invalid': submitted && f.email.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.email.errors" class="text-danger">
+                                                                        <div *ngIf="f.email.errors.required">email is required</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl-checkbox">
+                                                                    <div class="form-check d-flex">
+                                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value="">Send Drip Email Newsletter
+                                                            </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label">Email 2</label>
+                                                                <div class="text-left ">
+
+                                                                    <input type="text" formControlName="email2" id="email2" class="form-control" [ngClass]="{'is-invalid': submitted && f.email2.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.email2.errors" class="text-danger">
+                                                                        <div *ngIf="f.email2.errors.required">email2 is required</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl-checkbox">
+                                                                    <div class="form-check d-flex">
+                                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value="">Send Drip Email Newsletter
+                                                            </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12 ">
+                                                        <div class="row">
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label ">Birthday</label>
+                                                                <div class="text-left">
+
+                                                                    <input type="text" formControlName="birthday" id="birthday" class="form-control" [ngClass]="{'is-invalid': submitted && f.birthday.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.birthday.errors" class="text-danger">
+                                                                        <div *ngIf="f.birthday.errors.required">birthday is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-2">
+                                                                <label class=" col-form-label">Star</label>
+                                                                <div class="text-left">
+                                                                    <select class="dropdown-menu" formControlName="stars" id="stars" class="form-control" [ngClass]="{'is-invalid': submitted && f.stars.errors}">
+                                                                <option class="dropdown-item" value="1">1</option>
+                                                                <option class="dropdown-item" value="2">2</option>
+                                                                <option class="dropdown-item" value="3">3</option>
+                                                                <option class="dropdown-item" value="4">4</option>
+                                                                <option class="dropdown-item" value="5">5</option>
+                                                            </select>
+                                                                    <div *ngIf="submitted && f.stars.errors" class="text-danger">
+                                                                        <div *ngIf="f.stars.errors.required">select star is required</div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <label class=" col-form-label">Tags</label>
+                                                                <span *ngFor="let tags of tags">
+                                                                    <br>
+                                                                    <input type="checkbox"  id="tags" [value]="tags.id" (change)="onCheckboxChange($event)" [ngClass]="{'is-invalid': submitted && f.tags.errors}"> {{tags.tags }}
+                                                                    <div *ngIf="submitted && f.tags.errors" class="text-danger">
+                                                                        <div *ngIf="f.tags.errors.required">select tags is required</div>
+                                                                    </div>
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-sm-4 ">
+                                                                <label class=" col-form-label ">2nd Contact Name</label>
+                                                                <div class="text-left ">
+                                                                    <input type="text" formControlName="contact_name2" id="contact_name2" class="form-control" [ngClass]="{'is-invalid': submitted && f.contact_name2.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.contact_name2.errors" class="text-danger">
+                                                                        <div *ngIf="f.contact_name2.errors.required">2nd Contact Name is required</div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 ">
+                                                                <label class="col-form-label ">2nd Contact Phone</label>
+                                                                <div class="text-left ">
+                                                                    <input type="text" formControlName="contact_phone2" id="contact_phone2" class="form-control" [ngClass]="{'is-invalid': submitted && f.contact_phone2.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.contact_phone2.errors" class="text-danger">
+                                                                        <div *ngIf="f.contact_phone2.errors.required">2nd Contact Phone is required</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label">2nd Contact Email</label>
+                                                                <div class="text-left ">
+                                                                    <input type="text" formControlName="contact_email2" id="contact_email2" class="form-control" [ngClass]="{'is-invalid': submitted && f.contact_email2.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.contact_email2.errors" class="text-danger">
+                                                                        <div *ngIf="f.contact_email2.errors.required">2nd Contact Email is required</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl-checkbox">
+                                                                    <div class="form-check d-flex">
+                                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value="">Send Drip Email Newsletter
+                                                            </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <label class=" col-form-label">2nd Contact Birthday</label>
+                                                                <div class="text-left ">
+                                                                    <input type="text" formControlName="contact_birthday2" id="contact_birthday2" class="form-control" [ngClass]="{'is-invalid': submitted && f.contact_birthday2.errors}" placeholder="">
+                                                                    <div *ngIf="submitted && f.contact_birthday2.errors" class="text-danger">
+                                                                        <div *ngIf="f.contact_birthday2.errors.required">2nd Contact Birthday is required</div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-12 text-center save-sec">
+                                                        <label class=" col-form-label"></label>
+
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,110 @@
+<app-client-navbar>
+</app-client-navbar>
+<section class="Contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <div class="card">
+                                    <div class="card-header">Contacts</div>
+                                    <div class="card-body">
+                                        <p>Add, Edit, Search, and Manage all your Contacts.</p>
+
+                                        <div class="contact_quick_search_form">
+                                            <form action="/action_page.php">
+                                                <label>Quick search:</label>
+                                                <input class="form-control" type="text" placeholder="Search" name="search" [(ngModel)]="searchText">
+                                                <button class="btn btn-md btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="contact-search-name">
+
+                                            <ul class="contact-search-name-menu">
+                                                <li><a href="#/contacts" (click)="Search('all')">All</a></li>
+                                                <li><a href="#/contacts" (click)="Search('a')">A</a></li>
+                                                <li><a href="#/contacts" (click)="Search('b')">B</a></li>
+                                                <li><a href="#/contacts" (click)="Search('c')">C</a></li>
+                                                <li><a href="#/contacts" (click)="Search('d')">D</a></li>
+                                                <li><a href="#/contacts" (click)="Search('e')">E</a></li>
+                                                <li><a href="#/contacts" (click)="Search('f')">F</a></li>
+                                                <li><a href="#/contacts" (click)="Search('g')">G</a></li>
+                                                <li><a href="#/contacts" (click)="Search('h')">H</a></li>
+                                                <li><a href="#/contacts" (click)="Search('i')">I</a></li>
+                                                <li><a href="#/contacts" (click)="Search('j')">J</a></li>
+                                                <li><a href="#/contacts" (click)="Search('k')">K</a></li>
+                                                <li><a href="#/contacts" (click)="Search('l')">L</a></li>
+                                                <li><a href="#/contacts" (click)="Search('m')">M</a></li>
+                                                <li><a href="#/contacts" (click)="Search('n')">N</a></li>
+                                                <li><a href="#/contacts" (click)="Search('o')">O</a></li>
+                                                <li><a href="#/contacts" (click)="Search('p')">P</a></li>
+                                                <li><a href="#/contacts" (click)="Search('q')">Q</a></li>
+                                                <li><a href="#/contacts" (click)="Search('r')">R</a></li>
+                                                <li><a href="#/contacts" (click)="Search('s')">S</a></li>
+                                                <li><a href="#/contacts" (click)="Search('t')">T</a></li>
+                                                <li><a href="#/contacts" (click)="Search('u')">U</a></li>
+                                                <li><a href="#/contacts" (click)="Search('v')">V</a></li>
+                                                <li><a href="#/contacts" (click)="Search('w')">W</a></li>
+                                                <li><a href="#/contacts" (click)="Search('x')">X</a></li>
+                                                <li><a href="#/contacts" (click)="Search('y')">Y</a></li>
+                                                <li><a href="#/contacts" (click)="Search('z')">Z</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix "></div>
+                                        <div class="cnt_all_contact_info ">
+                                            <h6 *ngIf="!searchText ">All : {{totalCount}} contacts</h6>
+                                            <h6 *ngIf="searchText ">Search : {{searchText}} : {{ (contactData | filter: searchText).length }} Contacts</h6>
+                                        </div>
+                                        <div class="clearfix "></div>
+
+                                        <div class="contact_table_info ">
+
+                                            <table *ngIf="totalCount " class="table table-striped ">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col ">Name</th>
+                                                        <th scope="col ">Mobile</th>
+                                                        <th scope="col ">Email</th>
+                                                        <th scope="col ">Tags</th>
+                                                        <th scope="col ">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="contactsList " class="list ">
+                                                    <tr *ngFor="let data of contactData | filter:searchText">
+
+                                                        <th scope="row ">{{data.last_name}} , {{data.first_name}}</th>
+                                                        <td>{{data.mobile_phone}}</td>
+                                                        <td>{{data.email}}</td>
+                                                        <td>{{ data.tags}}</td>
+                                                        <td class="action"><a routerLink="/contacts-details/{{data.id}}" title="Details " class="contact-action ">Details</a>
+                                                            <a mwlConfirmationPopover [popoverTitle]="popoverTitle " [popoverMessage]="popoverMessage " placement="left " (confirm)="deleteContact(data.id) " (cancel)="cancelClicked=true "><i class="fa
+                                                fa-trash-o " aria-hidden="true "></i></a>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <p *ngIf="!totalCount || !(contactData | filter: searchText).length">You currently have no contacts.</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-4 ">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

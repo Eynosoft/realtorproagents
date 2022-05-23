@@ -1,0 +1,32 @@
+<app-client-navbar></app-client-navbar>
+<section>
+    <div class="container">
+        <h1>Choose Theme</h1>
+        <h3>Mobile Friendly Responsive Themes</h3>
+        <p>Choose a theme by selecting the color and then clicking the "Save" button. Easily customize theme photos and colors to reflect your local area, expertise,<br> and branding. Change your theme at anytime to give your website a fresh new look and
+            see what your content looks like in a different theme.</p>
+        <h6>Our themes pass the Google Mobile Friendly Tests.</h6>
+        <p> Changing themes will reset any custom colors you have set for the theme. Slider photos will not be effected.</p>
+        <form [formGroup]="themeSelectForm" (ngSubmit)="onSubmit()">
+            <div class="form-row mt-5" *ngFor="let themeid of theme_id">
+                <div class="form-group col-md-3" style="border:1px solid #c9c4c4; border-radius: 5px;">
+                    <img src="assets/themes-image/download.jpg" alt=""> Click Image Above to Enlarge
+                    <input type="radio" formControlName="theme_id" name="theme_id" [value]="themeid.id" id="" placeholder="">
+                    <div style="width:35px;background-color:#990000;">&nbsp;</div>
+                </div>
+                <div class="form-group col-md-3" style="border:1px solid #c9c4c4; border-radius: 5px;">
+                    <img src="assets/themes-image/images.jpg" alt=""> Click Image Above to Enlarge
+                    <input type="radio" formControlName="theme_id" name="theme_id" [value]="themeid.id" id="" placeholder="">
+                    <div style="width:35px;background-color:#0099cc;">&nbsp;</div>
+                </div>
+                <div class="form-group col-md-6" style="border:1px solid #c9c4c4; border-radius: 5px;">
+                    <a routerLink="/email-property-alert">
+                        <h6>Email Alert Property Form Page</h6>
+                    </a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary m-5 ">Save</button>
+        </form>
+    </div>
+</section>
