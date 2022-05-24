@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 01:13 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: May 24, 2022 at 03:39 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,6 +21,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `realtorproagents`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agent_plans`
+--
+
+CREATE TABLE `agent_plans` (
+  `id` int(11) NOT NULL,
+  `plan_name` varchar(150) NOT NULL,
+  `amount` decimal(6,2) NOT NULL,
+  `billing_cycle` enum('Monthly','Yearly') NOT NULL,
+  `status` enum('Active','Inactive') NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -49,8 +66,8 @@ CREATE TABLE `contacts` (
   `contact_phone2` varchar(100) NOT NULL,
   `contact_email2` varchar(100) NOT NULL,
   `contact_birthday2` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -125,7 +142,7 @@ CREATE TABLE `email_property` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `phone` int(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -156,8 +173,8 @@ CREATE TABLE `idx_order_detail` (
   `zip` int(50) NOT NULL,
   `payment_id` varchar(100) NOT NULL,
   `idx_mls_period` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -170,8 +187,8 @@ CREATE TABLE `leads` (
   `id` int(11) NOT NULL,
   `auto_import_leads` varchar(1000) NOT NULL,
   `auto_opt_in_leads` varchar(1000) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -207,8 +224,8 @@ CREATE TABLE `listings` (
   `zillow` smallint(5) NOT NULL,
   `syndicate_listing` smallint(5) NOT NULL,
   `sort_order` smallint(5) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -227,8 +244,8 @@ INSERT INTO `listings` (`id`, `mls`, `address`, `city`, `state`, `zip`, `title`,
 CREATE TABLE `listings_category` (
   `id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -253,9 +270,53 @@ CREATE TABLE `membership_order` (
   `idx_package` varchar(100) NOT NULL,
   `price` varchar(100) NOT NULL,
   `time_period` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mls`
+--
+
+CREATE TABLE `mls` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `mls`
+--
+
+INSERT INTO `mls` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'AK - Alaska MLS - AKMLS - Alaska Multiple Listing Service, Inc (187)', '2022-05-23 17:24:02', '2022-05-23 17:24:02'),
+(2, 'AK - Fairbanks MLS - Fairbanks MLS (562)', '2022-05-23 17:24:02', '2022-05-23 17:24:02'),
+(3, 'AK - Southeast Alaska - Southeast Alaska MLS (555)', '2022-05-23 17:24:18', '2022-05-23 17:24:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `payment_method` varchar(180) NOT NULL,
+  `plan_id` varchar(80) NOT NULL,
+  `plan_name` varchar(180) NOT NULL,
+  `duration` varchar(80) NOT NULL,
+  `current_status` enum('active','inactive') NOT NULL,
+  `amount` decimal(5,2) NOT NULL,
+  `transaction_id` varchar(100) NOT NULL,
+  `payment_status` varchar(80) NOT NULL,
+  `payment_response` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -286,7 +347,7 @@ CREATE TABLE `task` (
   `id` int(11) NOT NULL,
   `date` varchar(100) NOT NULL,
   `task` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -309,8 +370,8 @@ CREATE TABLE `themes` (
   `user_id` varchar(50) NOT NULL,
   `added_by` varchar(100) NOT NULL,
   `theme_url` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -331,8 +392,8 @@ CREATE TABLE `themes_page` (
   `theme_id` varchar(50) NOT NULL,
   `userid` varchar(50) NOT NULL,
   `page_name` varchar(250) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -360,9 +421,9 @@ CREATE TABLE `users` (
   `user_role` smallint(6) NOT NULL,
   `user_activation_key` varchar(200) NOT NULL,
   `auth_token` varchar(150) NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` smallint(6) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -383,8 +444,8 @@ CREATE TABLE `user_themes` (
   `id` int(11) NOT NULL,
   `theme_id` varchar(100) NOT NULL,
   `userid` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -397,6 +458,12 @@ INSERT INTO `user_themes` (`id`, `theme_id`, `userid`, `created_at`, `updated_at
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `agent_plans`
+--
+ALTER TABLE `agent_plans`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `contacts`
@@ -457,6 +524,18 @@ ALTER TABLE `membership_order`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mls`
+--
+ALTER TABLE `mls`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
@@ -497,10 +576,16 @@ ALTER TABLE `user_themes`
 --
 
 --
+-- AUTO_INCREMENT for table `agent_plans`
+--
+ALTER TABLE `agent_plans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=967;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=852;
 
 --
 -- AUTO_INCREMENT for table `contacts_tags`
@@ -518,7 +603,7 @@ ALTER TABLE `contact_task`
 -- AUTO_INCREMENT for table `email_property`
 --
 ALTER TABLE `email_property`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `idx_order_detail`
@@ -548,6 +633,18 @@ ALTER TABLE `listings_category`
 -- AUTO_INCREMENT for table `membership_order`
 --
 ALTER TABLE `membership_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mls`
+--
+ALTER TABLE `mls`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -596,13 +693,6 @@ ALTER TABLE `user_themes`
 ALTER TABLE `contacts_tags`
   ADD CONSTRAINT `contacts_tags_ibfk_1` FOREIGN KEY (`contacts_id`) REFERENCES `contacts` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `contacts_tags_ibfk_2` FOREIGN KEY (`tags_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `contact_task`
---
-ALTER TABLE `contact_task`
-  ADD CONSTRAINT `contact_task_ibfk_1` FOREIGN KEY (`contacts_id`) REFERENCES `contacts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contact_task_ibfk_2` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
