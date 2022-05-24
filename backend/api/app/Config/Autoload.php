@@ -45,7 +45,9 @@ class Autoload extends AutoloadConfig
         'Config'      => APPPATH . 'Config',
         'Libraries'   => APPPATH . 'Libraries',
         'Modules\Admin' => ROOTPATH. 'Modules/Admin',
-        'Modules\Client' => ROOTPATH. 'Modules/Client'
+        'Modules\Client' => ROOTPATH. 'Modules/Client',
+        'Modules\Payment' => ROOTPATH. 'Modules/Payment',
+        'Modules\Mls' => ROOTPATH. 'Modules/Mls',
     ];
 
     /**

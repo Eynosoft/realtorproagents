@@ -1,71 +1,111 @@
 <app-client-navbar></app-client-navbar>
 <section>
-    <div class="container">
-        <h4> Ultra Agent Website Sign Up</h4>
-        <p>Please verify that you have the correct website selected you wanted, enter your credit card and billing information below, and then click on the "Process Payment" button.</p>
-        <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
-            <h6>Ultra Agent Website</h6>
-            &nbsp;
-            <h6>$24.95 /mo.</h6>
-            <div style="float:right;">
-                Pay Monthly <input type="radio" id="" formControlName="" value=""> <br> for 6 Months (1 Month FREE) <input type="radio" id="" formControlName="" value=""><br> Pay for 12 Months (2 Months FREE) <input type="radio" id="" formControlName=""
-                    value="">
-            </div>
-            <div style="float:left;">
-                <input type="checkbox" id="" formControlName="" value="">
-                <h4>Yes!! Sign me up for a FREE 7 days of Ultra Agent SOCIAL!</h4> Our team of professional social media experts keep your Facebook, Twitter, and LinkedIn up-to-date with your latest listings, blog posts, and enticing local news and events
-                saving you valuable time for what you do best. Ultra Agent SOCIAL's squeeze page feature provides you more leads and traffic to your website. There's no risk – you'll only be billed if you decide to keep your membership after your free
-                trial. Subscribe or cancel any time. 50% Off limited time only with sign up.
-            </div>
-            <h5>Total $24.95 /mo.</h5>
-        </div>
-
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
         <div class="container">
-            <div class="form-row mb-5">
-                <div class="col-md-4 p-3" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
-                    <p> Your Credit Card</p>
-                    Card Number <input type="text" class="form-control" formControlName="cardnumber" value=""><br> Security Code <input type="text" class="form-control" formControlName="securitycode" value=""> <br> Expiration Date <select name="" id="">
-                        <option value="">1-january</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="">2022</option>
-                    </select>
-                </div>
+            <h4> Ultra Agent Website Sign Up</h4>
+            <p>Please verify that you have the correct website selected you wanted, enter your credit card and billing information below, and then click on the "Process Payment" button.</p>
+            <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+                <h6>Ultra Agent Website</h6>
+                &nbsp;
+                <h6>$24.95 /mo.</h6>
 
-
-                <div class="col-md-6 p-3" style="border: solid 1px #dcdcdc;">
-                    <p>
-                        Billing Information</p>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            First Name <input type="text" class="form-control" formControlName="first_name" value="">
-                        </div>
-                        <div class="col-md-6">
-                            Last Name <input type="text" class="form-control" formControlName="last_name" value="">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-10">
-                            Address <input type="text" class="form-control" formControlName="adresss" value="">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-5">
-                            City <input type="text" class="form-control" formControlName="city" value="">
-                        </div>
-                        <div class="col-md-3">
-                            State <select class="form-control" formControlName="state">
-                                <option value="" selected>AL</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            Zip <input type="text" class="form-control" formControlName="ZIP" value="">
-                        </div>
-                    </div>
+                <div style="float:right;">
+                    Pay Monthly <input type="radio" id="" formControlName="duration" value="pay_monthly" [ngClass]="{ 'is-invalid': submitted && f.duration.errors}"> <br> for 6 Months (1 Month FREE) 
+                    <input type="radio" id="" formControlName="duration" value="pay_six_monthly" [ngClass]="{ 'is-invalid': submitted && f.duration.errors}"><br> Pay for 12 Months (2 Months FREE) 
+                    <input type="radio" id="" formControlName="duration" value="pay_twelve_monthly" [ngClass]="{ 'is-invalid': submitted && f.duration.errors}">
                 </div>
+                <div *ngIf="submitted && f.duration.errors" class="text-danger">
+                    <div *ngIf="f.duration.errors.required">Please select duration</div>
+                </div>
+                <div style="float:left;">
+                    <input type="checkbox" id="" formControlName="ultra_agent_social" value="ultra_agent_social">
+                    <h4>Yes!! Sign me up for a FREE 7 days of Ultra Agent SOCIAL!</h4> Our team of professional social media experts keep your Facebook, Twitter, and LinkedIn up-to-date with your latest listings, blog posts, and enticing local news and events
+                    saving you valuable time for what you do best. Ultra Agent SOCIAL's squeeze page feature provides you more leads and traffic to your website. There's no risk – you'll only be billed if you decide to keep your membership after your free
+                    trial. Subscribe or cancel any time. 50% Off limited time only with sign up.
+                </div>
+                <h5>Total $24.95 /mo.</h5>
             </div>
-            <button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>
-            <a routerLink="/idx-membership" style="cursor:pointer; float:right; color:red;">	back to Shopping Cart</a>
+
+            <div class="container">
+                <div class="form-row mb-5">
+                    <div class="col-md-4 p-3" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+                        <p> Your Credit Card</p>
+                        Card Number <input type="text" class="form-control" formControlName="cardnumber" value="cardnumber" [ngClass]="{ 'is-invalid': submitted && f.cardnumber.errors}">
+                        <div *ngIf="submitted && f.cardnumber.errors" class="text-danger">
+                            <div *ngIf="f.cardnumber.errors.required">Please select cardnumber</div>
+                        </div>
+                        <br> Security Code <input type="text" class="form-control" formControlName="securitycode" value="" [ngClass]="{ 'is-invalid': submitted && f.securitycode.errors}">
+                        <div *ngIf="submitted && f.securitycode.errors" class="text-danger">
+                            <div *ngIf="f.securitycode.errors.required">Please select Security Code</div>
+                        </div>
+                        <br> Expiration Date <select formControlName="expiry_date" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors}">
+                            <option value="">1-january</option>
+                        </select>
+                        <div *ngIf="submitted && f.expiry_date.errors" class="text-danger">
+                            <div *ngIf="f.expiry_date.errors.required">Please select Expiry Date</div>
+                        </div>
+                        <select formControlName="expiry_year" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_year.errors}">
+                            <option value="">2022</option>
+                        </select>
+                        <div *ngIf="submitted && f.expiry_year.errors" class="text-danger">
+                            <div *ngIf="f.expiry_year.errors.required">Please select year</div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 p-3" style="border: solid 1px #dcdcdc;">
+                        <p>
+                            Billing Information</p>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                First Name <input type="text" class="form-control" formControlName="first_name" value="" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.first_name.errors" class="text-danger">
+                                <div *ngIf="f.first_name.errors.required">Please enter first name</div>
+                            </div>
+                            <div class="col-md-6">
+                                Last Name <input type="text" class="form-control" formControlName="last_name" value="" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.last_name.errors" class="text-danger">
+                                <div *ngIf="f.last_name.errors.required">Please enter last name</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-10">
+                                Address <input type="text" class="form-control" formControlName="adresss" value="" [ngClass]="{ 'is-invalid': submitted && f.adresss.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.adresss.errors" class="text-danger">
+                                <div *ngIf="f.adresss.errors.required">Please enter address</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-5">
+                                City <input type="text" class="form-control" formControlName="city" value="" [ngClass]="{ 'is-invalid': submitted && f.city.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.city.errors" class="text-danger">
+                                <div *ngIf="f.city.errors.required">Please enter city</div>
+                            </div>
+                            <div class="col-md-3">
+                                State <select class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors}">
+                                    <option value="" selected>AL</option>
+                                </select>
+                            </div>
+                            <div *ngIf="submitted && f.state.errors" class="text-danger">
+                                <div *ngIf="f.state.errors.required">Please enter state</div>
+                            </div>
+                            <div class="col-md-3">
+                                Zip <input type="text" class="form-control" formControlName="zip" value="" [ngClass]="{ 'is-invalid': submitted && f.zip.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.zip.errors" class="text-danger">
+                                <div *ngIf="f.zip.errors.required">Please enter zip</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>-->
+                <button type="submit" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+                <a routerLink="/idx-membership" style="cursor:pointer; float:right; color:red;">	back to Shopping Cart</a>
+            </div>
         </div>
-    </div>
+    </form>
 </section>

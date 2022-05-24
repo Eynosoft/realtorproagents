@@ -22,7 +22,5 @@ export class IdxMlsService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  constructor(   private http: HttpClient,
-    private router: Router,
-    ) { }
+  constructor(private http: HttpClient,private router: Router) { }
 }

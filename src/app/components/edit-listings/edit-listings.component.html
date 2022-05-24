@@ -42,9 +42,9 @@
                             <form [formGroup]="formListing" (ngSubmit)="onSubmitListing()">
                                 <div class="listing-inner-button">
                                     <select formControlName="listings" id="listing_value">
-                                            <option value=''>Select Listings</option>
-                                            <option *ngFor="let list of listings" value={{list.id}}>{{list.title}}</option>
-                                        </select>
+                                        <option value=''>Select Listings</option>
+                                        <option *ngFor="let list of listings" value={{list.id}}>{{list.title}}</option>
+                                    </select>
 
                                     <!-- <a href="" >New</a> -->
 

@@ -3,33 +3,42 @@
     <div class="container">
         <h4>Ultra Agent Website Sign Up</h4>
         <p>Please select the Website or the Website with Ultra Agent IDX. If you select the Website with Ultra Agent IDX, please select your IDX package and MLS. Once selected, click on the "Proceed to Sign Up" button to continue.</p>
-        <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
-            <div class="form-group col-md-9">
-                <input type="radio" id="" formControlName="" value="">
-                <h5>Ultra Agent Website <span style="background-color: #333; color:#fff;">$24.95 /mo.</span></h5>
+        <form [formGroup]="membershipForm" (ngSubmit)="onSubmit()">
+            <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+                <div *ngIf="submitted && f.membershipname.errors" class="text-danger">
+                    <div *ngIf="f.membershipname.errors.required">Please select the required fields</div>
+                </div>
+                <br/>
+                <div class="form-group col-md-9">
+                    <input type="radio" id="" formControlName="membershipname" value="agent_website" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Ultra Agent Website <span style="background-color: #333; color:#fff;">$24.95 /mo.</span></h5>
+                </div>
+                <div class="form-group col-md-9">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_starter" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Ultra Agent Website with Ultra Agent IDX (Starter) <span style="background-color: #333; color:#fff;">$34.95 /mo.</span></h5>
+                </div>
+                <div class="form-group col-md-9">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_power_agent" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Ultra Agent Website with Ultra Agent IDX (Power Agent) <span style="background-color: #333; color:#fff;">$49.95 /mo.</span></h5>
+                </div>
+                <div class="form-group col-md-9">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_broker" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Ultra Agent Website with Ultra Agent IDX (Broker) $74.95 /mo. <span style="background-color: #333; color:#fff;">$74.95 /mo.</span></h5>
+                </div>
+                <h6>Select Your MLS (<small>you don't see your MLS listed please contact us.</small> )</h6>
+                <div class="form-group col-md-9">
+                    <select class="dropdown-menu" formControlName="mls" id="mls" class="form-control" [ngClass]="{'is-invalid': submitted && f.mls.errors}">
+                        <option value=''>Select Listings</option>
+                        <option class="dropdown-item" *ngFor="let list of mlsData" value={{list.id}}>{{list.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="submitted && f.mls.errors" class="text-danger">
+                    <div *ngIf="f.mls.errors.required">Mls is required</div>
+                </div>
             </div>
-            <div class="form-group col-md-9">
-                <input type="radio" id="" formControlName="" value="">
-                <h5>Ultra Agent Website with Ultra Agent IDX (Starter) <span style="background-color: #333; color:#fff;">$34.95 /mo.</span></h5>
-            </div>
-            <div class="form-group col-md-9">
-                <input type="radio" id="" formControlName="" value="">
-                <h5>Ultra Agent Website with Ultra Agent IDX (Power Agent) <span style="background-color: #333; color:#fff;">$49.95 /mo.</span></h5>
-            </div>
-            <div class="form-group col-md-9">
-                <input type="radio" id="" formControlName="" value="">
-                <h5>Ultra Agent Website with Ultra Agent IDX (Broker) $74.95 /mo. <span style="background-color: #333; color:#fff;">$74.95 /mo.</span></h5>
-            </div>
-            <h6>Select Your MLS (<small>you don't see your MLS listed please contact us.</small> )</h6>
-            <div class="form-group col-md-9">
-                <select formcontrolName="" id="" class="form-control">
-                <option value="">-- PLEASE SELECT YOUR MLS --</option>
-                <option value="">AK - Alaska MLS - AKMLS - Alaska Multiple Listing Service, Inc (187)</option>
-                <option value="">AK - Fairbanks MLS - Fairbanks MLS (562)</option>
-                <option value="">AK - Southeast Alaska - Southeast Alaska MLS (555)</option>
-            </select>
-            </div>
-        </div>
-        <button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+            <!--<button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>-->
+            <button type="submit" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+            
+        </form>
     </div>
 </section>
