@@ -70,7 +70,8 @@ class Autoload extends AutoloadConfig
      * @var array<string, string>
      */
     public $classmap = [
-        'BotDetectCaptcha' => APPPATH .'Libraries\botdetect\BotDetectCaptcha.php'
+        'BotDetectCaptcha' => APPPATH .'Libraries\botdetect\BotDetectCaptcha.php',
+        'Braintree_lib' => APPPATH .'Libraries\Braintree\Braintree_lib.php'
     ];
 
     /**

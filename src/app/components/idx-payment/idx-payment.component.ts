@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class IdxPaymentComponent implements OnInit {
   payentData: any;
+  membershipname:any;
+  mls: any;
   paymentForm: any = {
     duration: null,
     ultra_agent_social: null,
@@ -39,10 +41,9 @@ export class IdxPaymentComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      console.log(params);
-      //this.membershipForm = JSON.parse(params["user"]);
-    });
+    this.membershipname = localStorage.getItem('membershipname');
+    this.mls = localStorage.getItem('mls');
+    
     this.paymentForm = this.formBuilder.group(
       {
         duration          : ['',[Validators.required]],

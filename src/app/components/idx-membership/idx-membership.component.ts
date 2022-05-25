@@ -74,17 +74,16 @@ export class IdxMembershipComponent implements OnInit {
    * Submit the form data
    */
    onSubmit(): void {
-    console.log('thisi s ');
     const {membershipname,mls} = this.membershipForm.value;
-    console.log('membershipname='+membershipname);
     this.submitted = true;
     if(this.membershipForm.invalid) {
       return;
     }
-    
-    this.router.navigateByUrl('/idx-payment', {
-      state: {membershipname: membershipname, mls: mls}
-    });
+    localStorage.removeItem('membershipname');
+    localStorage.removeItem('mls');
+    localStorage.setItem('membershipname', membershipname);
+    localStorage.setItem('mls', mls);
+    this.router.navigateByUrl('/idx-payment');
     //console.log(this.formListing.value);
   }
   /******************************************************************************/
