@@ -78,3 +78,11 @@ $routes->group("contacts", ["namespace" => "\Modules\Client\Controllers"], funct
 				$routes->post("select-theme-page", "ThemesController::addThemeSelectPage");
 				
 				});	
+
+				$routes->group("profile", ["namespace" => "\Modules\Client\Controllers"], function ($routes) {
+					// welcome page - URL: /client
+					$routes->post("add-profile", "Profile::addProfile");
+					$routes->get("get-profile/(:num)", "Profile::getAllProfile/$1");
+					$routes->post("update-profile/(:num)", "Profile::updateProfile/$1");
+				});
+				
