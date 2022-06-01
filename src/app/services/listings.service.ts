@@ -93,11 +93,11 @@ export class ListingsService {
    * @param (null)
    * @returns (object)
    */
-   getListingsById(id:any): Observable<any> {
+    getListingsById(id:any): Observable<any> {
     return this.http
       .get(environment.apiUrl + '/listing/getListingById/'+id)
       .pipe(catchError(this.errorHandler));
-  }
+    }
   /**********************************************************************************/
   /**********************************************************************************/
   /**

@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder,Validators, FormGroup,FormArray,FormContro
 import { ActivatedRoute, Route } from '@angular/router'; 
 import { Router } from '@angular/router';
 import { MlsService } from 'src/app/services/mls/mls.service';
+import { PaymentService } from 'src/app/services/payment/payment.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class IdxMembershipComponent implements OnInit {
   mlsData: any;
+  brainTreeToken: any;
   membershipForm: any = {
    membershipname: null,
    mls: null 
@@ -38,7 +40,7 @@ export class IdxMembershipComponent implements OnInit {
    * @param router 
    * @param route 
    */
-  constructor(private formBuilder: FormBuilder, private mlsService: MlsService, private router: Router,
+  constructor(private formBuilder: FormBuilder, private mlsService: MlsService, private paymentService: PaymentService, private router: Router,
     private route: ActivatedRoute) { }
   /******************************************************************************/
 	/******************************************************************************/  
@@ -46,8 +48,8 @@ export class IdxMembershipComponent implements OnInit {
    * Function and variables are called or initialized
    */ 
   ngOnInit(): void {
-    
     this.getAllMls();
+    this.getClientToken();
     this.membershipForm = this.formBuilder.group(
       {
         membershipname:['',[Validators.required]],
@@ -69,7 +71,17 @@ export class IdxMembershipComponent implements OnInit {
   }
   /******************************************************************************/
 	/******************************************************************************/
-
+  /**
+   * Get all the mls data from the database
+   */
+   getClientToken(): void {
+    this.paymentService.getToken().subscribe((data)=>{
+      this.brainTreeToken = data;
+      console.log(data);
+   });
+  }
+  /******************************************************************************/
+	/******************************************************************************/
   /**
    * Submit the form data
    */
@@ -79,8 +91,11 @@ export class IdxMembershipComponent implements OnInit {
     if(this.membershipForm.invalid) {
       return;
     }
+    
     localStorage.removeItem('membershipname');
     localStorage.removeItem('mls');
+    localStorage.removeItem('brainTreeToken');
+    localStorage.setItem('brainTreeToken', this.brainTreeToken);
     localStorage.setItem('membershipname', membershipname);
     localStorage.setItem('mls', mls);
     this.router.navigateByUrl('/idx-payment');

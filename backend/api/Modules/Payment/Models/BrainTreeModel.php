@@ -1,8 +1,8 @@
 <?php
 /**
- * BrainTree Plan Model 
+ * BrainTree Model 
  * 
- * Manage all the api relation database operations for BrainTree Plans
+ * Manage all the api relation database operations for BrainTree payment gateway
  */
 namespace Modules\Payment\Models;
 
@@ -10,7 +10,7 @@ use CodeIgniter\Model;
 
 
 
-class BrainTreePlanModel extends Model
+class BrainTreeModel extends Model
 {
     protected $DBGroup              = 'default';
     protected $table                = '';
