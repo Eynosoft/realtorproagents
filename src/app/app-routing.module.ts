@@ -51,6 +51,7 @@ import { ThemesComponent } from './components/agents/themes/themes.component';
 import { SelectThemePageComponent } from './components/agents/select-theme-page/select-theme-page.component';
 import { IdxMembershipComponent } from './components/idx-membership/idx-membership.component';
 import { IdxPaymentComponent } from './components/idx-payment/idx-payment.component';
+import { IdxPaymentSuccessComponent } from './components/idx-payment-success/idx-payment-success.component';
 
 
 import { AuthGuard } from './auth.guard';
@@ -107,6 +108,7 @@ const routes: Routes = [
   { path:'select-theme-page', component:SelectThemePageComponent,canActivate: [AuthGuard],data:{title:'Select ThemePage'} },
   { path:'idx-membership', component:IdxMembershipComponent,canActivate: [AuthGuard],data:{title:'Idx Membership'} },
   { path:'idx-payment', component:IdxPaymentComponent,canActivate: [AuthGuard],data:{title:'Idx Payment'} },
+  { path:'idx-payment-success', component:IdxPaymentSuccessComponent,canActivate: [AuthGuard],data:{title:'Idx Payment success'} },
   { path:'**', component: NoPageFoundComponent}
 ];
 

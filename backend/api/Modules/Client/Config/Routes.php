@@ -86,3 +86,7 @@ $routes->group("contacts", ["namespace" => "\Modules\Client\Controllers"], funct
 					$routes->post("update-profile/(:num)", "Profile::updateProfile/$1");
 				});
 				
+				$routes->group("idx", ["namespace" => "\Modules\Client\Controllers"], function ($routes) {
+					// welcome page - URL: /client
+					$routes->post("add-membership", "Membership::addMembership");
+				});

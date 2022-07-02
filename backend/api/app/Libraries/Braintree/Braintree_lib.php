@@ -59,6 +59,7 @@ class Braintree_lib {
 	 */
 	function subscribePlan($paymentMethodToken = null, $planId = null) {
 		try {
+		
 			$result = $this->gateway->subscription()->create([
 				'paymentMethodToken' => $paymentMethodToken,
 				'planId' => $planId
@@ -127,16 +128,17 @@ class Braintree_lib {
 	/**
 	 * Create payment method
 	 */
-	function createPaymentMethod($customerId = null, $clientToken = null) {
+	function createPaymentMethod($customerId = null, $paymentNonce = null) {
 		try {
+    
 			$result = $this->gateway->paymentMethod()->create([
 				'customerId' => $customerId,
-				'paymentMethodNonce' => $clientToken,
+				'paymentMethodNonce' => $paymentNonce,
 				'options' => [
-				  'failOnDuplicatePaymentMethod' => true
+				  'failOnDuplicatePaymentMethod' => false
 				]
 			]);
-			
+
 			return $result;  
 		} catch (\Braintree\Exception\NotFound $e) {
 			echo $e->getMessage();
@@ -148,17 +150,19 @@ class Braintree_lib {
 	/**
 	 * Create payment method nonce
 	 */
-	function createPaymentMethodNonce($paymentMethodToken = null) {
-		try {
-			$result = $this->gateway->paymentMethodNonce()->create($paymentMethodToken);
-			//$result = $gateway->paymentMethodNonce()->create('A_PAYMENT_METHOD_TOKEN');
-			//$nonce = $result->paymentMethodNonce->nonce;
+	// function createPaymentMethodNonce($paymentMethodToken = null) {
+	// 	try {
+	// 		//$result = $this->gateway->paymentMethodNonce()->create($paymentMethodToken);
+	// 		//$result = $gateway->paymentMethodNonce()->create('A_PAYMENT_METHOD_TOKEN');
+	// 		//$nonce = $result->paymentMethodNonce->nonce;
 			
-			return $result;  
-		} catch (\Braintree\Exception\NotFound $e) {
-			echo $e->getMessage();
-		}
-	}
+	// 		//return $result;  
+	// 	} catch (\Braintree\Exception\NotFound $e) {
+	// 		echo $e->getMessage();
+	// 	}
+	// }
+
 	/******************************************************************************/
     /******************************************************************************/ 
+	
 }	

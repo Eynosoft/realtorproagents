@@ -1,7 +1,8 @@
 <app-client-navbar></app-client-navbar>
 <section>
-    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <form #payment [formGroup]="paymentForm" id="payment-form" (ngSubmit)="onSubmit()">
         <div class="container">
+
             <h4> {{membershipname}} Sign Up</h4>
             <p>Please verify that you have the correct website selected you wanted, enter your credit card and billing information below, and then click on the "Process Payment" button.</p>
             <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
@@ -12,30 +13,31 @@
                 <div style="float:right;">
                     <div *ngFor="let plans of plansData;let i = index">
                         <div *ngIf="i==0">
-                            Pay Monthly <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_monthly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br> 
+                            Pay Monthly <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_monthly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
                         </div>
                         <div *ngIf="i==1">
-                            Pay for 6 Months (1 Month FREE) <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_six_montly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br> 
+                            Pay for 6 Months (1 Month FREE) <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_six_montly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
                         </div>
                         <div *ngIf="i==2">
-                            Pay for 12 Months (2 Months FREE)<input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_twelve_month" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br> 
+                            Pay for 12 Months (2 Months FREE)<input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_twelve_month" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
                         </div>
-
                     </div>
                     <!--Pay Monthly <input type="radio" id="" formControlName="planId" value="pay_monthly" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}"><br> 
                     for 6 Months (1 Month FREE)<input type="radio" id="" formControlName="planId" value="pay_six_montly" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}"><br>
                     Pay for 12 Months (2 Months FREE)<input type="radio" id="" formControlName="planId" value="pay_twelve_month" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}">-->
+                    <div *ngIf="submitted && f.planName.errors" class="text-danger">
+                        <div *ngIf="f.planName.errors.required">Please select Plan</div>
+                    </div>
                 </div>
-                <div *ngIf="submitted && f.planId.errors" class="text-danger">
-                    <div *ngIf="f.planId.errors.required">Please select Plan</div>
-                </div>
+
                 <div style="float:left;">
                     <input type="checkbox" id="" formControlName="ultra_agent_social" value="ultra_agent_social">
                     <h4>Yes!! Sign me up for a FREE 7 days of Ultra Agent SOCIAL!</h4> Our team of professional social media experts keep your Facebook, Twitter, and LinkedIn up-to-date with your latest listings, blog posts, and enticing local news and events
-                    saving you valuable time for what you do best. Ultra Agent SOCIAL's squeeze page feature provides you more leads and traffic to your website. There's no risk – you'll only be billed if you decide to keep your membership after your free
-                    trial. Subscribe or cancel any time. 50% Off limited time only with sign up.
+                    saving you valuable time for what you do best. Ultra Agent SOCIAL's squeeze page feature provides you more leads and traffic to your website. There's no risk – you'll only be billed if you decide to keep your membership after your
+                    free trial. Subscribe or cancel any time. 50% Off limited time only with sign up.
                 </div>
                 <input type="hidden" formControlName="totalPriceCalculated" value="0">
+
                 <h5>Total $<span id="totalPrice">{{totalPriceCalculated == 0 ? 24.95 : totalPriceCalculated}}</span>/mo.</h5>
             </div>
 
@@ -43,15 +45,19 @@
                 <div class="form-row mb-5">
                     <div class="col-md-4 p-3" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
                         <p> Your Credit Card</p>
-                        Card Number <input type="text" class="form-control" formControlName="cardnumber" value="cardnumber" [ngClass]="{ 'is-invalid': submitted && f.cardnumber.errors}">
-                        <div *ngIf="submitted && f.cardnumber.errors" class="text-danger">
+                        <div id="bt-dropin"></div>
+
+                        <input id="nonce" #inputNonce name="payment_method_nonce" formControlName="payment_method_nonce" type="hidden" value="">
+                        <!-- <input id="client_token" formControlName="client_token" type="hidden" value="{{brainTreeToken}}"> -->
+                        <!-- Card Number <input type="text" class="form-control" formControlName="cardnumber" value="cardnumber" [ngClass]="{ 'is-invalid': submitted && f.cardnumber.errors}"> -->
+                        <!-- <div *ngIf="submitted && f.cardnumber.errors" class="text-danger">
                             <div *ngIf="f.cardnumber.errors.required">Please select cardnumber</div>
-                        </div>
-                        <br> Security Code <input type="text" class="form-control" formControlName="securitycode" value="" [ngClass]="{ 'is-invalid': submitted && f.securitycode.errors}">
+                        </div> -->
+                        <!-- <br> Security Code <input type="text" class="form-control" formControlName="securitycode" value="" [ngClass]="{ 'is-invalid': submitted && f.securitycode.errors}">
                         <div *ngIf="submitted && f.securitycode.errors" class="text-danger">
                             <div *ngIf="f.securitycode.errors.required">Please select Security Code</div>
-                        </div>
-                        <br> Expiration Date <select formControlName="expiry_date" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors}">
+                        </div> -->
+                        <!-- <br> Expiration Date <select formControlName="expiry_date" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors}">
                             <option value="">Select Month</option>
                             <option value="01">1-January</option>
                             <option value="02">2-February</option>
@@ -68,8 +74,8 @@
                         </select>
                         <div *ngIf="submitted && f.expiry_date.errors" class="text-danger">
                             <div *ngIf="f.expiry_date.errors.required">Please select Expiry Date</div>
-                        </div>
-                        <select formControlName="expiry_year" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_year.errors}">
+                        </div> -->
+                        <!-- <select formControlName="expiry_year" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_year.errors}">
                             <option value="">Select Year</option>
                             <option value="2022">2022</option>
                             <option value="2023">2023</option>
@@ -100,10 +106,10 @@
                             <option value="2048">2048</option>
                             <option value="2049">2049</option>
                             <option value="2050">2050</option>
-                        </select>
-                        <div *ngIf="submitted && f.expiry_year.errors" class="text-danger">
+                        </select> -->
+                        <!-- <div *ngIf="submitted && f.expiry_year.errors" class="text-danger">
                             <div *ngIf="f.expiry_year.errors.required">Please select year</div>
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -180,9 +186,11 @@
                     </div>
                 </div>
                 <!--<button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>-->
-                <button type="submit" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+                <button type="submit" id="submit-button" class="btn btn-danger mb-5">Proceed to Sign Up</button>
                 <a routerLink="/idx-membership" style="cursor:pointer; float:right; color:red;">	back to Shopping Cart</a>
             </div>
+
         </div>
     </form>
+
 </section>

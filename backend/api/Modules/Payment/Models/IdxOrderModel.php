@@ -1,24 +1,24 @@
 <?php
 /**
- * Payment Model 
+ * Idx order Model 
  * 
- * Manage all the api relation database operations for payment
+ * Manage all the api relation database operations for idx order details
  */
 namespace Modules\Payment\Models;
 
 use CodeIgniter\Model;
 
-class PaymentModel extends Model
+class IdxOrderModel extends Model
 {
     protected $DBGroup              = 'default';
-    protected $table                = 'payments';
+    protected $table                = 'idx_order_detail';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $insertID             = 0;
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['user_id','payment_method','plan_id','plan_name','duration','current_status','amount','transaction_id','payment_status','payment_response','created_at','updated_at'];
+    protected $allowedFields        = ['payment_mode','card_number','security_code','expire_date','first_name','last_name','address','city','state','zip','payment_id','idx_mls_period','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;
@@ -54,20 +54,20 @@ class PaymentModel extends Model
       /******************************************************************************/
 	/******************************************************************************/
     /**
-	 * insert all the records from the idx payment
+	 * insert all the records from the idx order Details
 	 * 
 	 * @param(object)
 	 * 
 	 * @return (Object)
 	 */
-    public function addPaymentDetailsData($data = null)
+    public function addOrderDetailsData($data = null)
     {   
-
 		try {
+      
 
-      	if ($this->save($data))
+			if ($this->save($data))
 			{
-                $this->message = 'idx  payment  Succesfully!';
+                $this->message = 'idx  order detais  Added Succesfully!';
                 $this->status_code = 200;
 			} else {
 				$this->message = 'An error occurred while inserting data';

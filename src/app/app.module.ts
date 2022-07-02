@@ -79,7 +79,8 @@ import { EmailPropertyAlertComponent } from './components/agents/email-property-
 import { ThemesComponent } from './components/agents/themes/themes.component';
 import { SelectThemePageComponent } from './components/agents/select-theme-page/select-theme-page.component';
 import { IdxMembershipComponent } from './components/idx-membership/idx-membership.component';
-import { IdxPaymentComponent } from './components/idx-payment/idx-payment.component'; // a plugin!
+import { IdxPaymentComponent } from './components/idx-payment/idx-payment.component';
+import { IdxPaymentSuccessComponent } from './components/idx-payment-success/idx-payment-success.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -149,6 +150,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SelectThemePageComponent,
     IdxMembershipComponent,
     IdxPaymentComponent,
+    IdxPaymentSuccessComponent,
 
   ],
   imports: [

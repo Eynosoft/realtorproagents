@@ -1,24 +1,24 @@
 <?php
 /**
- * Payment Model 
+ * Membership Model 
  * 
- * Manage all the api relation database operations for payment
+ * Manage all the api relation database operations for membership
  */
-namespace Modules\Payment\Models;
+namespace Modules\Client\Models;
 
 use CodeIgniter\Model;
 
-class PaymentModel extends Model
+class MembershipModel extends Model
 {
     protected $DBGroup              = 'default';
-    protected $table                = 'payments';
+    protected $table                = 'membership_order';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $insertID             = 0;
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['user_id','payment_method','plan_id','plan_name','duration','current_status','amount','transaction_id','payment_status','payment_response','created_at','updated_at'];
+    protected $allowedFields        = ['userid','idx_package','price','time_period','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;
@@ -51,23 +51,24 @@ class PaymentModel extends Model
 	{
 		parent::__construct();
     }
-      /******************************************************************************/
+   
+     /******************************************************************************/
 	/******************************************************************************/
     /**
-	 * insert all the records from the idx payment
+	 * post all the records from the Membership
 	 * 
 	 * @param(object)
 	 * 
 	 * @return (Object)
 	 */
-    public function addPaymentDetailsData($data = null)
+    public function addMembershipData($data = null)
     {   
-
 		try {
+       
 
-      	if ($this->save($data))
+			if ($this->save($data))
 			{
-                $this->message = 'idx  payment  Succesfully!';
+                $this->message = 'idx  membership Added Succesfully!';
                 $this->status_code = 200;
 			} else {
 				$this->message = 'An error occurred while inserting data';
@@ -91,4 +92,5 @@ class PaymentModel extends Model
       
     /******************************************************************************/
 	/******************************************************************************/
+    
 }

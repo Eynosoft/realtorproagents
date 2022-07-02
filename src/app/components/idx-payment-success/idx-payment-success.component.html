@@ -1,0 +1,30 @@
+<app-client-navbar></app-client-navbar>
+<!-- <div *ngFor="let payment of idxPaymentData">
+    {{payment.plan_name}}
+</div> -->
+<div class="container mb-5">
+    <h1 class="text-center">SUCCESS!</h1>
+    <hr>
+    <div class="row">
+        <h3>Idx Plan Subcription Added. your plan details show below here.</h3>
+        <div class="col-md-offset-2 col-md-6 ">
+
+            <p>Plan name: <b>{{planName}}</b></p>
+            <p>Trial duration: <b>{{trialDuration}} month</b></p>
+            <p> Name: <b>{{first_name}} , {{last_name}}</b></p>
+            <p> Address: <b>{{adresss}}</b></p>
+            <p> City: <b>{{city}}</b></p>
+            <p> State: <b>{{state}}</b></p>
+            <p> Zip: <b>{{zip}}</b></p>
+        </div>
+        <div class="col-md-6">
+            <p>Membership plan: <b>{{membershipPlan}}</b></p>
+            <p>Subscription Id: <b>{{subscriptionId}}</b></p>
+            <p>Your plan price is: <b>{{price}}</b></p>
+            <p>Plan status is: <b>{{planStatus}}</b></p>
+            <p>Plan next billing date: <b>{{nextBillingPeriod}}</b> </p>
+            <p>Total number of billing cycle: <b>{{billingCycleNumber}}</b></p>
+        </div>
+
+    </div>
+</div>
