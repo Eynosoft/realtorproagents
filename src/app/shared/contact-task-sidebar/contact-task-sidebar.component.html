@@ -1,0 +1,310 @@
+<div class="card">
+    <div class="card-header">All : {{totalContacts}} contacts</div>
+    <div class="card-body">
+
+        <div class="contacts-sidebar-panel">
+            <div class="contacts-sidebar-wrapper">
+                <div [ngSwitch]="currentRout">
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/contacts'">
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/import-contacts"><i class="fa fa-plus"></i>Import Contact</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/add-contacts'">
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/import-contacts"><i class="fa fa-plus"></i>Import Contact</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/contacts-details/'+ currentRoutId">
+
+                        <p><b>Created: {{createDate | date:'MM-dd-yyyy'}}</b></p>
+
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/edit-contacts/{{currentRoutId}}"><i class="fa fa-plus"></i> Edit Contacts</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-plus"></i>Print Contact</a>
+                            </li>
+                            <li>
+                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left" (cancel)="cancelClicked = true" (confirm)="deleteContact(currentRoutId)"><i class="fa fa-plus"  ></i>Delete</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fa fa-plus"></i>Add New Note</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/edit-contacts/'+ currentRoutId">
+                        <p><b>Created: {{createDate| date:'MM-dd-yyyy'}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/edit-contacts/{{currentRoutId}}"><i class="fa fa-plus"></i> Edit Contacts</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-plus"></i>Print Contact</a>
+                            </li>
+                            <li>
+                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left" (cancel)="cancelClicked = true" (confirm)="deleteContact(currentRoutId)"><i class="fa fa-plus"></i>Delete</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fa fa-plus"></i>Add New Note</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/import-contacts'">
+                        <p><b>Total Contacts: {{totalContacts}}</b></p>
+                        <ul class="side_links">
+
+                            <li class="link_orange">
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/manage-tags'">
+                        <p><b>Total Tags: {{tagsLength}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-tag"><i class="fa fa-plus"></i>Add New Tag</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/add-new-tag'">
+                        <p><b>Total Tags: {{tagsLength}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-tag"><i class="fa fa-plus"></i>Add New Tag</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}} &nbsp;</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/edit-tag/' + currentRoutId +'/1'">
+                        <p><b>Total Tags: {{tagsLength}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-tag"><i class="fa fa-plus"></i>Add New Tag</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/edit-tag/' + currentRoutId +'/2'">
+                        <p><b>Total Tags: {{tagsLength}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-tag"><i class="fa fa-plus"></i>Add New Tag</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/view-tasks'">
+
+                        <p><b>Total Tasks: {{taskCount}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-task"><i class="fa fa-plus"></i>Add New Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/add-new-task/' + currentRoutId">
+                        <p><b>Total Tasks: {{taskCount}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-task"><i class="fa fa-plus"></i>Add New Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/add-new-task'">
+                        <p><b>Total Tasks: {{taskCount}}</b></p>
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-task"><i class="fa fa-plus"></i>Add New Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/calendar"><i class="fa fa-plus"></i>View Calender</a>
+                            </li>
+                            <li>
+                                <a routerLink="/add-contacts"><i class="fa fa-plus"></i>Add New Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+                            <li>
+                                <a routerLink="/manage-tags"><i class="fa fa-plus"></i>Manage Tags</a>
+                                <span *ngFor="let tags of totalTags"> {{tags.tags}}&nbsp; </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="cnt_sidebar_nav_row" *ngSwitchCase="'/calendar'">
+                        <ul class="side_links">
+                            <li class="link_orange">
+                                <a routerLink="/add-new-task"><i class="fa fa-plus"></i>Add New Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/view-tasks"><i class="fa fa-plus"></i>View All Task</a>
+                            </li>
+                            <li>
+                                <a routerLink="/contacts"><i class="fa fa-plus"></i>View All Contacts</a>
+                            </li>
+
+                        </ul>
+                    </div> -->
+
+                </div>
+                <!-- 
+                <div class="cnt_sidebar_nav_row">
+                    <ul class="side_links">
+                        <li>
+                            <a href=""><i class="fa fa-plus"></i>Add New Note</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

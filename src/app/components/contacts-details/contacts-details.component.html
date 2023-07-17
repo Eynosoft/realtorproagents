@@ -1,0 +1,151 @@
+<app-client-navbar></app-client-navbar>
+<section class="Contacts-section contacts-details-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8  contact-body-container">
+                                <div class="card">
+                                    <div class="card-header">Contact Details</div>
+                                    <div class="card-body">
+                                        <div class="contacts-details-content">
+                                            <!-- <div class="alert alert-warning import-warning">
+                                                <img src="assets/images/Diamond-caution.svg.png">Ultra Agent does not sell or share your information
+                                            </div>
+                                            <div class="import_file_field">
+                                                <form action="">
+                                                    <input type="file" id="myFile" name="filename">
+                                                    <a class="btn btn-md btn-primary" href="" type="submit">Upload</a>
+                                                </form>
+                                            </div>
+                                            <div class="import-inner-content">
+                                                <p>Each row should contain a first name, last name, and email address. Rows without valid email addresses will not be imported. Duplicates will also not be imported.</p>
+                                                <span style="display:block;"><img src="assets/images/contactcsvfile.gif" alt="" style="width:436px;height:122px;"></span>
+                                            </div> -->
+                                            <div class="contact-all-text text-center">
+                                                <table *ngIf="contactDetails" width="100%">
+
+                                                    <tr align="left">
+                                                        <td>
+                                                            <h3>{{contactDetails.first_name}} {{contactDetails.last_name}}</h3>
+                                                        </td>
+                                                        <span *ngFor="let star of stars">
+                                                            <td *ngIf="star<=contactDetails.stars">
+                                                                <i class="fa fa-star-o" style="font-size:20px; color:aliceblue; background: red; border-radius: 50%;margin: 3px;"></i>
+                                                            </td>
+                                                        </span>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td>
+                                                            <h6>{{contactDetails.company}}</h6>
+                                                        </td>
+                                                        <td><b>Tags: </b>
+                                                            <span *ngFor="let tag of tagsList">  <ng-container *ngIf="tag.hasTag"> {{tag.tags}}</ng-container></span>
+                                                        </td>
+                                                    </tr><br>
+                                                    <tr align="left">
+                                                        <td>
+                                                            {{contactDetails.address1}} <br>{{contactDetails.address2}} <br>{{contactDetails.city}}, {{contactDetails.state}} {{contactDetails.zip}}
+
+                                                            <td class="cnt-det-bg">
+                                                                <p>{{contactDetails.email}} </p>
+                                                                <p><span class="badge badge-success" style="margin-right: 3px; padding: 4px;"><i class="fa fa-check" aria-hidden="true"></i></span>Send Drip Email Newsletter</p>
+                                                            </td>
+                                                    </tr><br>
+                                                    <tr align="left">
+
+                                                        <b>Phones:</b><br> {{contactDetails.home_phone}} home <br>{{contactDetails.work_phone}} work <br>{{contactDetails.mobile_phone}} mobile
+                                                        <td class="cnt-det-bg">
+                                                            <p>{{contactDetails.email2}}</p>
+                                                            <p><span class="badge badge-success" style="margin-right: 3px; padding: 4px;"><i class="fa fa-check" aria-hidden="true"></i></span>Send Drip Email Newsletter</p>
+                                                        </td>
+                                                    </tr><br>
+                                                    <tr align="left">
+                                                        <td>
+                                                            <p><b>Fax: </b> {{contactDetails.fax}}</p>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td>
+                                                            <p><b>Birthday: </b> {{contactDetails.birthday}}</p>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr align="left">
+                                                        <td class="contact-sub-heading-bg"><b>2nd Contact</b></td>
+                                                        <td></td>
+                                                    </tr><br>
+                                                    <tr align="left">
+                                                        <td>
+
+                                                            <b>{{contactDetails.contact_name2}}</b>
+                                                            <p>{{contactDetails.contact_phone2}}</p>
+                                                        </td>
+                                                        <td class="cnt-det-bg">
+                                                            <p>{{contactDetails.contact_email2}}</p>
+                                                            <p><span class="badge badge-success" style="margin-right: 3px; padding: 4px;"><i class="fa fa-check" aria-hidden="true"></i></span>Send Drip Email Newsletter</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td>
+                                                            <p><b>Birthday: </b> {{contactDetails.contact_birthday2}}</p>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+
+
+                                                    <tr align="left">
+                                                        <td class="contact-sub-heading-bg"><b>Tasks
+                                                            <a class="contact-sub-heading-bg" routerLink="/add-new-task/{{contactDetails.id}}"><i class="fa fa-plus"></i> Add Task</a></b>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <th style="line-height: 3.4rem;"><span style="padding: 0px 20px;">day</span> <span style="padding: 0px 50px;">date</span><span style="padding: 0px 50px;">task</span>
+                                                        </th>
+                                                    </tr>
+                                                    <tr align="left" *ngIf="ContactTaskDetails">
+                                                        <div *ngFor="let taskData of ContactTaskDetails">
+                                                            <td> {{taskData.date|date:'EEEE'}} <b style="padding: 0px 50px;">{{taskData.date|date:'MMMM d, y'}}</b> {{taskData.task}} &nbsp; <span class="action">
+                                                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle " [popoverMessage]="popoverMessage " placement="top" (confirm)="deleteTask(taskData.id) " (cancel)="cancelClicked=true "><i class="fa
+                                                    fa-trash-o " aria-hidden="true "></i></a>
+                                                            </span></td>
+                                                        </div>
+                                                        <td></td>
+                                                    </tr><br>
+                                                    <tr align="left" *ngIf="!ContactTaskDetails">
+                                                        <td>You currently have no tasks.</td>
+                                                    </tr><br>
+
+                                                    <tr align="left">
+                                                        <td class="contact-sub-heading-bg"><b>Drip Email</b></td>
+                                                    </tr>
+                                                    <tr align="left">There are no drip emails.</tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,107 @@
+<app-client-navbar></app-client-navbar>
+<section>
+    <div class="container">
+        <h2>Email Property Alerts</h2>
+        <form [formGroup]="emailAlertForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="location">Location </label>
+                    <input type="text" formControlName="location" class="form-control" id="location" placeholder="" [ngClass]="{'is-invalid': submitted && f.location.errors}">
+                    <div *ngIf="submitted && f.location.errors" class="text-danger">
+                        <div *ngIf="f.location.errors.required">first name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="property_type">Property Type</label>
+                    <select id="property_type" formControlName="property_type" class="form-control" [ngClass]="{'is-invalid': submitted && f.property_type.errors}">
+                        <option selected>Choose...</option>
+                        <option >Rental</option>
+                        <option>...</option>
+                      </select>
+                    <div *ngIf="submitted && f.property_type.errors" class="text-danger">
+                        <div *ngIf="f.property_type.errors.required">first name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="min_price">Min. Price</label>
+                    <select id="min_price" formControlName="min_price" class="form-control" [ngClass]="{'is-invalid': submitted && f.min_price.errors}">
+                    <option selected>100,000</option>
+                    <option>...</option>
+                  </select>
+                    <div *ngIf="submitted && f.min_price.errors" class="text-danger">
+                        <div *ngIf="f.min_price.errors.required">first name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="max_price">Max Price</label>
+                    <select id="max_price" formControlName="max_price" class="form-control" [ngClass]="{'is-invalid': submitted && f.max_price.errors}">
+                    <option selected>200,000</option>
+                    <option>...</option>
+                  </select>
+                    <div *ngIf="submitted && f.max_price.errors" class="text-danger">
+                        <div *ngIf="f.max_price.errors.required">first name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="beds">Beds</label>
+                    <select id="inputState" class="form-control" id="beds" formControlName="beds" [ngClass]="{'is-invalid': submitted && f.beds.errors}">
+                    <option selected>1+</option>
+                    <option>...</option>
+                  </select>
+                    <div *ngIf="submitted && f.beds.errors" class="text-danger">
+                        <div *ngIf="f.beds.errors.required">first name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="baths">Baths</label>
+                    <select class="form-control" id="baths" formControlName="baths" [ngClass]="{'is-invalid': submitted && f.baths.errors}">
+                    <option selected>2+</option>
+                    <option>...</option>
+                  </select>
+                    <div *ngIf="submitted && f.baths.errors" class="text-danger">
+                        <div *ngIf="f.baths.errors.required">first name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="desired_features">Desired Features</label>
+                    <textarea class="form-control" id="feature" formControlName="feature" placeholder="with a pool, minumum squre feet,school district" rows="0" cols="90" [ngClass]="{'is-invalid': submitted && f.feature.errors}"></textarea>
+                </div>
+                <div *ngIf="submitted && f.feature.errors" class="text-danger">
+                    <div *ngIf="f.feature.errors.required">first name is required</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="name required" [ngClass]="{'is-invalid': submitted && f.name.errors}">
+
+                    <div *ngIf="submitted && f.name.errors" class="text-danger">
+                        <div *ngIf="f.name.errors.required">first name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" formControlName="email" placeholder="email required" [ngClass]="{'is-invalid': submitted && f.email.errors}">
+                    <div *ngIf="submitted && f.email.errors" class="text-danger">
+                        <div *ngIf="f.email.errors.required">first name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="" [ngClass]="{'is-invalid': submitted && f.phone.errors}">
+                    <div *ngIf="submitted && f.phone.errors" class="text-danger">
+                        <div *ngIf="f.phone.errors.required">first name is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-5">Submit</button>
+        </form>
+    </div>
+</section>

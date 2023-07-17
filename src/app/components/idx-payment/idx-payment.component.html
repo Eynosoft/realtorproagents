@@ -1,0 +1,198 @@
+<app-client-navbar></app-client-navbar>
+<section>
+    <form #payment [formGroup]="paymentForm" id="payment-form" (ngSubmit)="onSubmit()">
+        <div class="container">
+
+            <h4> {{membershipname}} Sign Up</h4>
+            <p>Please verify that you have the correct website selected you wanted, enter your credit card and billing information below, and then click on the "Process Payment" button.</p>
+            <div class="form-row plan-payment-mob mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+
+                <h6 id="membership-plan">{{membershipname}} </h6>
+
+                <h6 id="idx-price">${{planPrice}}/mo.</h6>
+                <p id="mls-data"><b>MLS : </b>{{mls}}</p>
+                <div class="idx-payment-plan">
+
+                    <div class="payment-duration" *ngFor="let plans of plansData; let i = index">
+                        <div *ngIf="i==0">
+                            Pay Monthly <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_monthly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
+                        </div>
+                        <div *ngIf="i==1">
+                            Pay for 6 Months <b>(1 Month FREE) </b> <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_six_montly" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
+                        </div>
+                        <div *ngIf="i==2">
+                            Pay for 12 Months <b>(2 Months FREE) </b> <input type="radio" id="{{plans.id}}" formControlName="planName" value="pay_twelve_month" (change)="calculatePrice($event)" [ngClass]="{ 'is-invalid': submitted && f.planName.errors}"><br>
+                        </div>
+                    </div>
+                    <!--Pay Monthly <input type="radio" id="" formControlName="planId" value="pay_monthly" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}"><br> 
+                    for 6 Months (1 Month FREE)<input type="radio" id="" formControlName="planId" value="pay_six_montly" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}"><br>
+                    Pay for 12 Months (2 Months FREE)<input type="radio" id="" formControlName="planId" value="pay_twelve_month" [ngClass]="{ 'is-invalid': submitted && f.planId.errors}">-->
+                    <div *ngIf="submitted && f.planName.errors" class="text-danger">
+                        <div *ngIf="f.planName.errors.required">Please select Plan</div>
+                    </div>
+                </div>
+
+                <div class="realpro_social">
+                    <input type="checkbox" id="" formControlName="ultra_agent_social" value="ultra_agent_social">
+                    <h4>Yes!! Sign me up for a FREE 7 days of Realtorpro Agent SOCIAL!</h4>
+                    <p>Our team of professional social media experts keep your Facebook, Twitter, and LinkedIn up-to-date with your latest listings, blog posts, and enticing local news and events saving you valuable time for what you do best. Ultra Agent
+                        SOCIAL's squeeze page feature provides you more leads and traffic to your website. There's no risk you'll only be billed if you decide to keep your membership after your free trial. Subscribe or cancel any time. 50% Off limited
+                        time only with sign up.</p>
+                </div>
+                <input type="hidden" formControlName="totalPriceCalculated" value="0">
+
+                <h5>Total $<span id="totalPrice">{{totalPriceCalculated == 0 ? 24.95 : totalPriceCalculated}}</span>/mo.</h5>
+            </div>
+
+            <div class="container">
+                <div class="form-row mb-5">
+                    <div class="col-md-4 p-3" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+                        <p> Your Credit Card</p>
+                        <div id="bt-dropin"></div>
+
+                        <input id="nonce" #inputNonce name="payment_method_nonce" formControlName="payment_method_nonce" type="hidden" value="">
+                        <!-- <input id="client_token" formControlName="client_token" type="hidden" value="{{brainTreeToken}}"> -->
+                        <!-- Card Number <input type="text" class="form-control" formControlName="cardnumber" value="cardnumber" [ngClass]="{ 'is-invalid': submitted && f.cardnumber.errors}"> -->
+                        <!-- <div *ngIf="submitted && f.cardnumber.errors" class="text-danger">
+                            <div *ngIf="f.cardnumber.errors.required">Please select cardnumber</div>
+                        </div> -->
+                        <!-- <br> Security Code <input type="text" class="form-control" formControlName="securitycode" value="" [ngClass]="{ 'is-invalid': submitted && f.securitycode.errors}">
+                        <div *ngIf="submitted && f.securitycode.errors" class="text-danger">
+                            <div *ngIf="f.securitycode.errors.required">Please select Security Code</div>
+                        </div> -->
+                        <!-- <br> Expiration Date <select formControlName="expiry_date" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors}">
+                            <option value="">Select Month</option>
+                            <option value="01">1-January</option>
+                            <option value="02">2-February</option>
+                            <option value="03">3-March</option>
+                            <option value="04">4-April</option>
+                            <option value="05">5-May</option>
+                            <option value="06">6-June</option>
+                            <option value="07">7-July</option>
+                            <option value="08">8-August</option>
+                            <option value="09">9-September</option>
+                            <option value="10">10-October</option>
+                            <option value="11">11-November</option>
+                            <option value="12">12-December</option>
+                        </select>
+                        <div *ngIf="submitted && f.expiry_date.errors" class="text-danger">
+                            <div *ngIf="f.expiry_date.errors.required">Please select Expiry Date</div>
+                        </div> -->
+                        <!-- <select formControlName="expiry_year" id="" [ngClass]="{ 'is-invalid': submitted && f.expiry_year.errors}">
+                            <option value="">Select Year</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                            <option value="2032">2032</option>
+                            <option value="2033">2033</option>
+                            <option value="2034">2034</option>
+                            <option value="2035">2035</option>
+                            <option value="2036">2036</option>
+                            <option value="2037">2037</option>
+                            <option value="2038">2038</option>
+                            <option value="2039">2039</option>
+                            <option value="2040">2040</option>
+                            <option value="2041">2041</option>
+                            <option value="2042">2042</option>
+                            <option value="2043">2043</option>
+                            <option value="2044">2044</option>
+                            <option value="2045">2045</option>
+                            <option value="2046">2046</option>
+                            <option value="2047">2047</option>
+                            <option value="2048">2048</option>
+                            <option value="2049">2049</option>
+                            <option value="2050">2050</option>
+                        </select> -->
+                        <!-- <div *ngIf="submitted && f.expiry_year.errors" class="text-danger">
+                            <div *ngIf="f.expiry_year.errors.required">Please select year</div>
+                        </div> -->
+                    </div>
+
+
+                    <div class="col-md-6 p-3" style="border: solid 1px #dcdcdc;">
+                        <h6> Billing Information</h6>
+                        <div class="form-row">
+                            <div class=" offset-md-1 col-md-10 mt-4">
+                                First Name <input type="text" class="form-control" formControlName="first_name" value="" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.first_name.errors" class="text-danger">
+                                <div *ngIf="f.first_name.errors.required">Please enter first name</div>
+                            </div>
+                            <div class="offset-md-1 col-md-10 mt-1">
+                                Last Name <input type="text" class="form-control" formControlName="last_name" value="" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.last_name.errors" class="text-danger">
+                                <div *ngIf="f.last_name.errors.required">Please enter last name</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="offset-md-1 col-md-10 mt-1">
+                                Address <input type="text" class="form-control" formControlName="adresss" value="" [ngClass]="{ 'is-invalid': submitted && f.adresss.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.adresss.errors" class="text-danger">
+                                <div *ngIf="f.adresss.errors.required">Please enter address</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="offset-md-1 col-md-10 mt-1">
+                                City <input type="text" class="form-control" formControlName="city" value="" [ngClass]="{ 'is-invalid': submitted && f.city.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.city.errors" class="text-danger">
+                                <div *ngIf="f.city.errors.required">Please enter city</div>
+                            </div>
+                            <div class="offset-md-1 col-md-10 mt-1">
+                                State <select class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors}">
+                                    <option value="">Select State</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                </select>
+                            </div>
+                            <div *ngIf="submitted && f.state.errors" class="text-danger">
+                                <div *ngIf="f.state.errors.required">Please enter state</div>
+
+                            </div>
+                            <div class="offset-md-1 col-md-10 mt-1">
+                                Zip <input type="text" class="form-control" formControlName="zip" value="" [ngClass]="{ 'is-invalid': submitted && f.zip.errors}">
+                            </div>
+                            <div *ngIf="submitted && f.zip.errors" class="text-danger">
+                                <div *ngIf="f.zip.errors.required">Please enter zip</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>-->
+                <button type="submit" id="submit-button" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+                <a routerLink="/idx-membership" style="cursor:pointer; float:right; color:red;">	back to Shopping Cart</a>
+            </div>
+
+        </div>
+    </form>
+
+</section>

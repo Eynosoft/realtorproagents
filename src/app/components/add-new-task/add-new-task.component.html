@@ -1,0 +1,93 @@
+<app-client-navbar>
+</app-client-navbar>
+<section class="Contacts-section Add-new-tasks-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8 contact-body-container">
+                                <div class="card">
+                                    <div class="card-header">Tasks</div>
+                                    <div class="card-body">
+                                        <div class="Tasks-content">
+                                            <p>Schedule and track all tasks including meetings, phone calls, to-dos, travel and much more. To assign a task to a contact, add the task on your contact's page.</p>
+                                            <div class="add-new-tasks">
+                                                <form style="margin:0 auto; max-width:1042px;" [formGroup]="TaskForm" (ngSubmit)="onSubmit()">
+                                                    <div class="add-task-date">
+                                                        <label>Task Date <input type="text"  formControlName="date" id="date" class="form-control" [ngClass]="{'is-invalid': submitted && f.date.errors}"></label>
+                                                        <div *ngIf="submitted && f.date.errors" class="text-danger">
+                                                            <div *ngIf="f.date.errors.required">first name is required</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-task">
+                                                        <label for="">Task  <input type="text"  formControlName="task" id="task" class="form-control" [ngClass]="{'is-invalid': submitted && f.task.errors}"></label>
+                                                        <div *ngIf="submitted && f.task.errors" class="text-danger">
+                                                            <div *ngIf="f.task.errors.required">first name is required</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="auto-delete-task-checkbox">
+                                                        <label>Auto-Delete<input type="checkbox" class="form-check-input" value=""></label>
+                                                        <p><img src="assets/images/Twitter-Retweet-Worldwide-smmsumo-1.png" alt=""> Delete this task automatically after the task date.</p>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </form>
+                                            </div>
+
+                                            <h5 class="Tasks-heading">Tasks</h5>
+
+                                            <div>
+
+                                                <table *ngIf="taskCount" class="table table-striped ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col ">Day</th>
+                                                            <th scope="col ">Date</th>
+                                                            <th scope="col ">Task</th>
+                                                            <th scope="col ">Contact</th>
+                                                            <th scope="col "></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="contactsList " class="list ">
+                                                        <tr *ngFor="let data of taskList">
+                                                            <th scope="row ">{{data.date | date:'EEEE' }}</th>
+                                                            <td>{{data.date | date:'MMMM d, y'}}</td>
+                                                            <td>{{data.task}}</td>
+                                                            <td>{{data.contact}}</td>
+                                                            <td class="action">
+                                                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle " [popoverMessage]="popoverMessage " placement="top" (confirm)="deleteTask(data.id) " (cancel)="cancelClicked=true "><i class="fa
+                                                    fa-trash-o " aria-hidden="true "></i></a>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <p *ngIf="!taskCount">You currently have no Task.</p>
+                                            </div>
+                                            <!-- <div class="bg-content">
+                                                <p>You currently have no tasks.</p>
+                                            </div> -->
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

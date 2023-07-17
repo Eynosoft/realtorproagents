@@ -1,0 +1,75 @@
+<app-client-navbar></app-client-navbar>
+<section class="Contacts-section Import-contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <div class="card">
+                                    <div class="card-header">Import Contacts</div>
+                                    <div class="card-body">
+                                        <div class="import-contacts-content">
+                                            <p>Import a CSV (comma-separated values) list of your contacts.</p>
+                                            <div class="alert alert-warning import-warning">
+                                                <img src="assets/images/Diamond-caution.svg.png">Ultra Agent does not sell or share your information
+                                            </div>
+                                            <div class="import_file_field">
+                                                <form [formGroup]="importContactsForm" (ngSubmit)="onSubmit()">
+                                                    <div *ngIf="submitted && f.headerList.errors" class="text-danger">
+                                                        <div *ngIf="f.headerList.errors.required"><sup>*</sup>First Name, Last Name, Email Required <br> if this error continues,please use our <a routerLink="/support-system">Support Ticket System</a>We might<br> request your CSV file for review.
+                                                        </div>
+                                                    </div>
+
+                                                    <input type="file" id="csv_file" formArrayName="csv_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" (change)="changeListener($event)" [ngClass]="{'is-invalid': submitted && f.csv_file.errors}">
+                                                    <button type="submit" class="btn btn-md btn-primary">Upload</button>
+                                                    <div>
+
+                                                        <div *ngFor="let ddlists of dropDownList;let i = index">
+
+                                                            <p>{{ddlists}}: <select data-id="{{i}}" id="headerList" formArrayName="headerList" (change)="changeHeaderList($event)" class="" [ngClass]="{'is-invalid': submitted && f.headerList.errors}">
+                                           
+                                                                <option [ngValue]="null" selected disabled>Do Not Import</option>
+                                                              
+                                                                 <!-- <option *ngFor ="let ddlist of dropDownOptions;index as i | keyvalue" [ngValue]="ddlist.key">{{ddlist.value}}</option>  -->
+                                                                <option *ngFor ="let ddlist of dropDownOptions" [value]="ddlist.key">{{ddlist.value}}</option>
+                                                   
+                                                            </select></p>
+
+                                                        </div>
+                                                        <div *ngIf="showcheck" class="check-import">
+                                                            <input type="checkbox" id="saveContact" [value]="" (change)="importRow($event)"> Do not import first row.<br>
+                                                            <input type="checkbox" id="" [value]=""> Opt-in Contacts For Drip Email Marketing <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <div class="import-inner-content">
+                                                <p>Each row should contain a first name, last name, and email address. Rows without valid email addresses will not be imported. Duplicates will also not be imported.</p>
+                                                <span style="display:block;"><img src="assets/images/contactcsvfile.gif" alt="" style="width:436px;height:122px;"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

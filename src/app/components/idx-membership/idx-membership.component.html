@@ -1,0 +1,44 @@
+<app-client-navbar></app-client-navbar>
+<section>
+    <div class="container">
+        <h4>Realtorpro Agent Website Sign Up</h4>
+        <p>Please select the Website or the Website with Realtorpro Agent IDX. If you select the Website with Realtorpro Agent IDX, please select your IDX package and MLS. Once selected, click on the "Proceed to Sign Up" button to continue.</p>
+        <form [formGroup]="membershipForm" (ngSubmit)="onSubmit()">
+            <div class="form-row mb-5" style="background-color: #eeeeee; border: solid 1px #dcdcdc;">
+                <div *ngIf="submitted && f.membershipname.errors" class="text-danger">
+                    <div *ngIf="f.membershipname.errors.required">Please select the required fields</div>
+                </div>
+                <br/>
+                <div class="form-group membershipname col-md-12 mt-4">
+                    <input type="radio" id="" formControlName="membershipname" value="agent_website" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Realtorpro Agent Website <span>$24.95 /mo.</span></h5>
+                </div>
+                <div class="form-group membershipname col-md-12 col-sm-10">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_starter" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Realtorpro Agent Website with Realtorpro Agent IDX (Starter) <span>$34.95 /mo.</span></h5>
+                </div>
+                <div class="form-group membershipname col-md-12 col-sm-10">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_power_agent" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Realtorpro Agent Website with Realtorpro Agent IDX (Power Agent) <span>$49.95 /mo.</span></h5>
+                </div>
+                <div class="form-group membershipname col-md-12 col-sm-10">
+                    <input type="radio" id="" formControlName="membershipname" value="idx_broker" [ngClass]="{ 'is-invalid': submitted && f.membershipname.errors}">
+                    <h5>Realtorpro Agent Website with Realtorpro Agent IDX (Broker) <span>$74.95 /mo.</span></h5>
+                </div>
+                <h6>Select Your MLS (<small>you don't see your MLS listed please contact us.</small> )</h6>
+                <div class="form-group col-md-10 col-xs-10">
+                    <select class="dropdown-menu" formControlName="mls" id="mls" class="form-control" [ngClass]="{'is-invalid': submitted && f.mls.errors}">
+                        <option value=''>Select Listings</option>
+                        <option class="dropdown-item" *ngFor="let list of mlsData" value={{list.name}}>{{list.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="submitted && f.mls.errors" class="text-danger">
+                    <div *ngIf="f.mls.errors.required">Mls is required</div>
+                </div>
+            </div>
+            <!--<button routerLink="/idx-payment" type="button" class="btn btn-danger mb-5">Proceed to Sign Up</button>-->
+            <button type="submit" class="btn btn-danger mb-5">Proceed to Sign Up</button>
+
+        </form>
+    </div>
+</section>

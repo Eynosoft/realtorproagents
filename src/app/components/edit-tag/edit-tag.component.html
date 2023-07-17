@@ -1,0 +1,78 @@
+<app-client-navbar>
+</app-client-navbar>
+<section class="Contacts-section AddNewTag-contacts-section ManageTag-contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8 contact-body-container">
+                                <div class="card">
+                                    <div class="card-header">Tags</div>
+                                    <div class="card-body">
+
+                                        <div class="ManageTag-contacts-content" *ngIf="id1==='1'">
+                                            <p>Tags allow you to organize, categorize and label your contacts. To select all your contacts associated with a tag, click on the tag in your "Contacts Tag Cloud".</p>
+
+                                            <h5 class="ManageTag-heading ">Tags</h5>
+                                            <h6>Tag</h6>
+
+                                            <form style="margin:0 auto; max-width:1042px;" [formGroup]="editTagsForm" (ngSubmit)="onSubmit()">
+                                                <div class="ManageTag-bg">
+                                                    <span><input type="text" formControlName="tags" id="tags" class="form-control" [ngClass]="{'is-invalid': submitted && f.tags.errors}" >
+                                                        <div *ngIf="submitted && f.tags.errors" class="text-danger">
+                                                            <div *ngIf="f.tags.errors.required">new tag is required</div>
+                                                        </div>
+                                                        <button type="submit" class="save-tag" style="margin-right: 10px; color: #06155a; border:none">Save</button>
+                                                        <a routerLink="/manage-tags" class="delete-tag" style="color:#06155a;">Cancel</a></span>
+                                                </div>
+                                            </form>
+                                            <div class="ManageTag-bg" *ngFor="let tags of tagList">
+                                                <p>{{tags.tags}}<span><a routerLink="/edit-tag/{{tags.id}}/1"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:#378805;"></i></a> <a  mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="right" (confirm)="deleteTags(tags.id)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true" style="color: #FF0000"></i></a></span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="ManageTag-contacts-content" *ngIf=" id1==='2'">
+                                            <app-add-tag-form></app-add-tag-form>
+
+                                            <form style="margin:0 auto; max-width:1042px;" [formGroup]="editTagsForm" (ngSubmit)="onSubmit()">
+                                                <div class="ManageTag-bg">
+                                                    <span><input type="text" formControlName="tags" id="tags" class="form-control" [ngClass]="{'is-invalid': submitted && f.tags.errors}" >
+                                                        <div *ngIf="submitted && f.tags.errors" class="text-danger">
+                                                            <div *ngIf="f.tags.errors.required">new tag is required</div>
+                                                        </div>
+                                                        <button type="submit" class="save-tag" style="margin-right: 10px; color: #06155a; border:none">Save</button>
+                                                        <a routerLink="/manage-tags" class="delete-tag" style="color:#06155a;">Cancel</a></span>
+                                                </div>
+                                            </form>
+                                            <div class="ManageTag-bg" *ngFor="let tags of tagList">
+                                                <p>{{tags.tags}}<span><a routerLink="/edit-tag/{{tags.id}}/2"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:#378805;"></i></a> <a  mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="right" (confirm)="deleteTags(tags.id)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true" style="color: #FF0000"></i></a></span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

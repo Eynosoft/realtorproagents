@@ -1,0 +1,380 @@
+<app-client-navbar></app-client-navbar>
+<section class="Listing-section">
+    <div class="listing-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="listing-heading text-center">
+                        <h4>Listings</h4>
+                        <p>Enter listings to be displayed on your Listing pages.</p>
+                    </div>
+
+                    <div class="listing-property">
+
+                        <div class="col-md-6 listing-content-side">
+                            <h5><b>Single Property Websites</b></h5>
+                            <p>Create unlimited Single Property Websites showcasing your listings. The website includes big Call-to-Action buttons for "Schedule a Showing" and "Request More Information" as well as ways to share the Property Website through
+                                the social networks. This provides a powerful tool in marketing your listing.</p>
+                            <a href="#!" class="btn btn-md btn-brand-03">See Example</a>
+                        </div>
+                        <div class="col-md-5 listing-img-side"></div>
+                    </div>
+                    <div class="alert alert-success">
+                        <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong> If you are getting or have our Ultra Agent IDX, then your listings are updated automatically to your website.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="manage-listing-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="manage-listing-cover">
+                        <div class="manage-listing ">
+                            <h5 class="bg-listing">Manage Listing</h5>
+                        </div>
+                        <p>To add a listing, click the "New" button and then enter your listing below. After saving your new listing, your listing will be displayed in the dropdown box. To edit or delete a listing, select your listing in the dropdown box
+                            and click "Edit or "Delete".</p>
+                        <div class="listing-buttons">
+                            <!-- <div class="dropdown">Dropdown</div> -->
+                            <form [formGroup]="formListing" (ngSubmit)="onSubmitListing()">
+                                <div class="listing-inner-button">
+                                    <select formControlName="listings" id="listing_value">
+                                        <option value=''>Select Listings</option>
+                                        <option *ngFor="let list of listings" value={{list.id}}>{{list.title}}</option>
+                                    </select>
+
+                                    <!-- <a href="" >New</a> -->
+
+                                    <button type="submit" class='list_action' name="new_list" (click)="newListing()" class="inner-link btn btn-primary">New</button>
+
+                                    <button type="submit" class='list_action' name="edit_list" (click)="editListing()" class="inner-link btn btn-info">Edit</button>
+                                    <button type="submit" class='list_action' name="delete_list" (click)="deleteListing()" class="inner-link btn btn-danger">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-form-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="listing-pannel">
+                        <div class="listing-form-section">
+                            <div class="add-edit-listing">
+                                <h5 class="bg-listing">Add/Edit Listing</h5>
+                            </div>
+                            <form style="margin:0 auto; max-width:900px;" [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <!-- <form>  -->
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-2 col-form-label">MLS</label>
+                                    <div class="col-sm-12">
+                                        <input formControlName="mls" type="text" id="mls" class="form-control" [ngClass]="{'is-invalid': submitted && f.mls.errors}">
+                                    </div>
+                                    <div *ngIf="submitted && f.mls.errors" class="text-danger">
+                                        <div *ngIf="f.mls.errors.required">MLS is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" formControlName="address" id="address" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group ls-frm-width col-md-8 offset-md-2">
+                                    <div class="row">
+                                        <div class="col-sm-4 ">
+                                            <div class="text-left col-sm-10">
+                                                <label class="col-sm-6 col-form-label ">City</label>
+                                                <input type="text" class="form-control" placeholder="" formControlName="city" id="city">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="text-left col-sm-10">
+                                                <label class="col-sm-6 col-form-label ">State</label>
+                                                <input type="text" class="form-control" placeholder="" formControlName="state" id="state">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="text-left col-sm-10">
+                                                <label class="col-sm-6 col-form-label">Zip</label>
+                                                <input type="text" class="form-control" placeholder="" formControlName="zip" id="zip">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-2 col-form-label">Title</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="" formControlName="title" id="title" [ngClass]="{'is-invalid': submitted && f.title.errors}">
+                                    </div>
+                                    <div *ngIf="submitted && f.title.errors" class="text-danger">
+                                        <div *ngIf="f.title.errors.required">Title is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-12">
+                                        <textarea formControlName="description" class="form-control" id="description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-2 col-form-label">Price</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" placeholder="" formControlName="price" id="price">
+                                    </div>
+                                </div>
+
+                                <div class="listing-checkbox">
+
+                                    <div class="form-check d-flex" *ngFor="let lcat of listingCat">
+                                        <label class="form-check-label">
+                                            <input type="radio" formControlName="category_name" class="form-check-input" [value]="lcat.id">{{lcat.category_name}}
+                                            </label>
+                                    </div>
+                                </div>
+
+                                <div class="listing-checkbox-onclick-field">
+                                    <div class=" ls-frm-width">
+                                        <div class="row">
+
+                                            <div class="col-sm-2 pr-0 mr-2 listing-checkbox-panel">
+                                                <div class="ls-width ">
+                                                    <label class="col-sm-12 col-form-label ">Year Built</label>
+                                                    <input type="text" class="form-control col-sm-6" placeholder="" formControlName="year_built" id="year_built">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2 pr-0 mr-2 listing-checkbox-panel">
+                                                <div class="ls-width ">
+                                                    <label class="col-sm-12 col-form-label ">Square Feet</label>
+                                                    <input type="text" class="form-control col-sm-6 " placeholder="" formControlName="square_feet" id="square_feet">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2 pr-0 mr-2 listing-checkbox-panel">
+                                                <div class=" ls-width ">
+                                                    <label class="col-sm-12 col-form-label">Bedrooms</label>
+                                                    <input type="text" class="form-control col-sm-6" placeholder="" formControlName="bedrooms" id="bedrooms">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2 pr-0 mr-2 listing-checkbox-panel">
+                                                <div class="ls-width ">
+                                                    <label class="col-sm-12 col-form-label">Bathrooms</label>
+                                                    <input type="text" class="form-control col-sm-6 " placeholder="" formControlName="bathrooms" id="bathrooms">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="listing-upload-file form-group col-md-10 offset-md-1">
+                                    <label for="">Main Image</label>
+                                    <!--<input type="file" id="myFile" formControlName="main_image">-->
+                                    <input type="file" id="myFile" formControlName="main_image" accept="image/*" (change)="selectMainFile($event)" />
+                                    <p>(We accept jpg, gif, bmp, and png images.)</p>
+                                    <p><b>Note:</b>If your images are too large, you might have to upload them one at a time.</p>
+                                    <p><b>Note:</b>After uploading your images, you will be able to preview them.</p>
+                                </div>
+                                <div class="listing-upload-file-image-container">
+                                    <img style="height:100px;width:auto;" *ngFor='let preview of tpreviewsmain' [src]="preview" class="preview">
+                                </div>
+                                <div>
+                                    <img style="height:100px;width:auto;" *ngFor='let preview of previewsmain' [src]="preview" class="preview">
+                                </div>
+                                <div *ngFor="let progressInfo of progressInfosMain" class="mb-2">
+                                    <span>{{ progressInfo.fileName }}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{ progressInfo.value }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progressInfo.value + '%' }">
+                                            {{ progressInfo.value }}%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+                                    <span>{{ progressInfo.fileName }}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{ progressInfo.value }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progressInfo.value + '%' }">
+                                            {{ progressInfo.value }}%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="listing-additional form-group col-md-10 offset-md-1">
+                                    <div class="one">
+                                        <label for="">Additional Image</label>
+                                    </div>
+                                    <div class="two col-sm-10">
+                                        <!--<input type="file" id="myFile" formControlName="additional_image1"><br>-->
+                                        <input type="file" id="myFile" formControlName="additional_image" accept="image/*" multiple (change)="selectFiles($event)" />
+                                        <!--<input type="file" id="myFile" formControlName="additional_image2"><br>
+                                            <input type="file" id="myFile" formControlName="additional_image3"><br>
+                                            <input type="file" id="myFile" formControlName="additional_image4"><br>
+                                            <input type="file" id="myFile" formControlName="additional_image5"><br>-->
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#" *ngFor='let preview of tpreviews' data-id="{{preview}}" (click)="deleteGalleryImg($event)">
+                                        <div class="additional-image-all-container" style="display: inline;">
+                                            <img style="height:100px;width:auto;" [src]="preview" class="preview">
+                                            <span style="margin: 5px; color:red; font-size:12px;"><i class="icon-remove"></i>remove</span>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="additional-image-all-container" style="display: inline;">
+                                    <img style="height:100px;width:auto;" *ngFor='let preview of previews' [src]="preview" class="preview">
+                                </div>
+                                <div class="form-group col-md-10 offset-md-1">
+                                    <label class="col-sm-6 col-form-label">Virtual Tour Website Address(URL)</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" formControlName="virtual_tour_url" id="virtual_tour_url">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10 offset-md-1 featured-Listing">
+                                    <label class="col-sm-4 col-form-label">Featured Listing</label>
+                                    <div class="col-sm-12">
+                                        <p>All listings marked as featured can be displayed on your home page and in a SideBar slideshow. To display featured listings on your home page, check the box on your <a href="">home page</a> . To display featured
+                                            listings in a SideBar slideshow, go to your <a href="">SideBars </a> page and select to add the Featured Listings SlideShow.</p>
+                                    </div>
+                                </div>
+
+                                <div class="fl-checkbox">
+                                    <div class="form-check d-flex">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" value="" formControlName="featured_listing" id="featured_listing">This home is a featured listing.
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10 offset-md-1 sold-home">
+                                    <label class="col-sm-4 col-form-label">Sold Home</label>
+                                    <div class="col-sm-12">
+                                        <p>Sold homes will only be displayed on your "Past Sales" page. They will also display on your home page if marked as "featured".</p>
+                                    </div>
+                                </div>
+
+                                <div class="fl-checkbox">
+                                    <div class="form-check d-flex">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" value="" formControlName="sold_home" id="sold_home">This home has sold.
+                                            </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 open-house d-flex">
+                                    <label class="col-sm-4 col-form-label">Open house</label>
+                                    <div class="d-flex">
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-12 col-form-label">Start Date</label>
+                                            <div class="open-house-input-section d-flex">
+                                                <input id="open_house_start_date" class="form-control" placeholder="yyyy-mm-dd" formControlName="open_house_start_date" [(ngModel)]="model" ngbDatepicker #open_house_start_date="ngbDatepicker">
+
+                                                <button class="btn btn-outline-secondary calendar" (click)="open_house_start_date.toggle()" type="button"></button>
+                                            </div>
+                                            <!--<input type="text" class="form-control" placeholder="" formControlName="open_house_start_date" id="open_house_start_date">-->
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-12 col-form-label">End Date</label>
+                                            <!--<input type="text" class="form-control" placeholder="" formControlName="open_house_end_date" id="open_house_end_date">-->
+                                            <div class="open-house-input-section d-flex">
+                                                <input id="open_house_end_date" class="form-control" placeholder="yyyy-mm-dd" formControlName="open_house_end_date" [(ngModel)]="model1" ngbDatepicker #open_house_end_date="ngbDatepicker">
+
+                                                <button class="btn btn-outline-secondary calendar" (click)="open_house_end_date.toggle()" type="button"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-10 offset-md-1 widget-code">
+                                    <label class="col-sm-4 col-form-label">Widget Code</label>
+                                    <div class="col-sm-12">
+                                        <p>Display widgets (slideshows, video, virtual tours, etc.) on your listing's details page. These get directly embedded into your website</p>
+                                        <span>(Paste your HTML widget code below.)</span>
+                                        <textarea class="form-control" formControlName="widget_code" id="widget_code"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 Google Map">
+                                    <label class="col-sm-4 col-form-label">Google Map</label>
+                                    <div class="col-sm-10">
+                                        <p>Display a Google Map on your listing's details page.</p>
+                                        <span>(Requires valid address, city, state, and zip code. Check to make sure Google has a map for your property.)</span>
+                                        <div class="form-check d-flex">
+                                            <input type="checkbox" class="form-check-input" value="" formControlName="google_map" id="google_map">Display a Google Map
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 Zillow">
+                                    <label class="col-sm-2 col-form-label">Zillow</label>
+                                    <div class="col-sm-10">
+                                        <p>Display Zillow Zestimate on your listing's details page.</p>
+                                        <span>(Requires valid address, city, state, and zip code. Check to make sure Zillow has a Zestimate for your property.)</span>
+                                        <div class="form-check d-flex">
+                                            <input type="checkbox" class="form-check-input" value="" formControlName="zillow" id="zillow">Display Zillow Zestimate
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 Syndicate-Listing">
+                                    <label class="col-sm-4 col-form-label">Syndicate Listing</label>
+                                    <div class="col-sm-10">
+                                        <p>Syndicate your listings to over 200 websites including Trulia, Oodle, Google Base, Vast, Zillow, Lycos, Homescape, OLX, Backpage, HotPads, PropSmart, Local, and many more dramatically increasing your listing's exposure.</p>
+                                        <div class="form-check d-flex">
+                                            <input type="checkbox" class="form-check-input" value="" formControlName="syndicate_listing" id="syndicate_listing">Syndicate Listing
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="listing-image form-group row">
+                                    <div class="col-sm-10 listing-image-pannel">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                        <img src="assets/images/google1.png" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 Zillow">
+                                    <label class="col-sm-4 col-form-label">Sort Order</label>
+                                    <div class="col-sm-10">
+                                        <p>Order how the listings are displayed on your website.</p>
+                                        <select formControlName="sort_order" id="sort_order" style="width: 50px;">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-10 offset-md-1 save-sec">
+                                    <label class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

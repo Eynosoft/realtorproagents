@@ -1,0 +1,186 @@
+<app-client-navbar></app-client-navbar>
+<section>
+    <div class="container">
+        <h3>Select Pages</h3>
+        <p>Select which pages you want to include in your website. Realtorpro agents has already created many pages for you. Some of these pages require setup which means entering in some content while others require no setup at all. Plus, you can add as
+            many additional pages as you like.</p>
+        <h6>Pages Requiring Setup/Content</h6>
+        <form [formGroup]="themePageSelectForm" (ngSubmit)="onSubmit()">
+            <div class="form-row ">
+                <div class="form-group col-md-3">
+                    <input type="checkbox" formControlName="home" value="home" id="" checked="checked"> Home
+                </div>
+                <div class=" form-group col-md-3 ">
+                    <input type="checkbox" formControlName="property_search_idx" value="Property search idx " id=" "> Property Search (IDX)
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="about_us" value="about us " id=" "> About Us
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="testimonials" value="testimonials " id=" "> Testimonials
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="agents" value="Agents " id=" "> Agents (Agent Roster/Bio Pages)
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="blog" value="blog " id=" "> Blog
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="news_rss_feeds" value="news rss feeds " id=" "> News/RSS Feeds
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="preferred_lender" value="preferred lender " id=" "> Preferred Lender
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="local_area" value="local area " id=" "> Local Area
+                </div>
+            </div>
+            <div class="form-row mb-3 ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="links" value="links " id=" "> Links
+                </div>
+            </div>
+
+            <h6>Pages Not Requiring Setup/Content</h6>
+            <div class="form-row ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="buyer_seller_tips" value="buyer/seller tips " id=" "> Buyer/Seller Tips
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="school_search" value="school search " id=" "> School Search
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="interest_rates" value="interest rates " id=" "> Interest Rates
+                </div>
+            </div>
+            <div class="form-row mb-3 ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="calculators" value="calculators " id=" "> Calculators
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="glossary_terms" value="glossary of terms " id=" "> Glossary of Terms
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="moving_checklist" value=" moving checklist " id=" "> Moving Checklist
+                </div>
+            </div>
+            <h6>Listing Pages - These pages are for manually added listings via the Listings tab.</h6>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="listings" value="listings " id=" "> Listings - This page displays your home/condo and lot/land listings.
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="homes_condos" value="homes/condos " id=" "> Homes/Condos - This page displays your home and condo listings.
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="lots_land" value="lots/land " id=" "> Lots/Land - This page displays your lot and land listings.
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="rentals" value="rentals " id=" "> Rentals - This page displays your rental listings
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="commercial" value="commercial " id=" "> Commercial - This page displays your commercial listings.
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="open_house" value="open house " id=" "> Open House - This page displays your open house listings.
+                </div>
+            </div>
+            <div class="form-row mb-3 ">
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="past_sales" value="past sales " id=" "> Past Sales - This page displays your sold listings.
+                </div>
+            </div>
+            <h6>Lead Generation Forms</h6>
+            <div class="form-row ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="contact_us" value="contact us " id=" "> Contact Us
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="home_worth" value="home worth " id=" "> What's Your Home Worth
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="email_property_alerts" value="email property alerts " id=" "> Email Property Alerts
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="home_value" value="home value " id=" "> Home Value Request
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="home_request" value="home request " id=" "> Find Home Request
+                </div>
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="rental_request" value="rental request " id=" "> Find Rental Request
+                </div>
+            </div>
+            <div class="form-row mb-3 ">
+                <div class="form-group col-md-3 ">
+                    <input type="checkbox" formControlName="relocate" value="relocate " id=" "> Relocate
+                </div>
+            </div>
+            <div class="form-row mb-1 ">
+                <div class="form-group col-md-9 ">
+                    <h3>REALTORPRO AGENTS IDX</h3>
+                    <H6>These pages are available with our Realtorpro Agents IDX. The Power Agent IDX package contains all the pages in the Starter IDX package. The Broker IDX package has all pages. (S = Starter IDX) (PA = Power Agent IDX) (B = Broker IDX)</H6>
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="advanced_property_search" value="advanced property search " id=" "> Property Search (S) & Advanced Property Search (S) & Draw on Map Search (PA)
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="map_search" value="map search" id=" "> Interactive Map Search (PA)
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="search_open_houses" value="search open houses " id=" "> Search Open Houses (PA) - This search only displays open houses.
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="property_alerts" value="property alerts " id=" "> Property Alerts (PA) - These email alerts are automatically sent to your clients.
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="property_organizer" value="property organizer " id=" "> Property Organizer (S) - Login area for your clients to manage their saved searches, saved listings, and email alerts.
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="communities" value="communities " id=" "> Communities (S) - This page shows your Communities.
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="markets" value="MLS saved searches " id=" "> Markets (PA) - This page shows your Markets (Advanced MLS Saved Searches).
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="featured_properties" value="featured properties " id=" "> Featured Properties (S) - These are auto-updated from your MLS based on MLS Agent ID(s) or MLS Office ID(s).
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="sold_properties" value="sold properties " id=" "> Sold Properties (PA) - These are auto-updated from your MLS based on MLS Agent ID(s) or MLS Office ID(s).
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="rental_properties" value="rental properties " id=" "> Rental Properties (S) - These are auto-updated from your MLS based on MLS Agent ID(s) or MLS Office ID(s).
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="commercial_properties" value="commercial properties " id=" "> Commercial Properties (S) - These are auto-updated from your MLS based on MLS Agent ID(s) or MLS Office ID(s).
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="supplemental_properties" value="supplemental properties " id=" "> Supplemental Properties (PA) - Properties can be manually added that are not in the MLS.
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="agents_b" value="agents (B) " id=" "> Agents (B)
+                </div>
+                <div class="form-group col-md-9 ">
+                    <input type="checkbox" formControlName="office_b" value="office (B) " id=" "> Office (B)
+                </div>
+            </div>
+            <button type="submit " class="btn btn-primary m-5 ">Save</button>
+        </form>
+    </div>
+</section>

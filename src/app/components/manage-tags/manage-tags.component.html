@@ -1,0 +1,61 @@
+<app-client-navbar>
+</app-client-navbar>
+<section class="Contacts-section ManageTag-contacts-section">
+    <div class="contacts-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contacts-panel">
+
+                    <div class="contact-pannel-wrapper">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <div class="card">
+                                    <div class="card-header">Tags</div>
+                                    <div class="card-body">
+                                        <div class="ManageTag-contacts-content">
+                                            <p>Tags allow you to organize, categorize and label your contacts. To select all your contacts associated with a tag, click on the tag in your "Contacts Tag Cloud".</p>
+                                            <!-- <div class="alert alert-warning import-warning">
+                                                <img src="assets/images/Diamond-caution.svg.png">Ultra Agent does not sell or share your information
+                                            </div>
+                                            <div class="import_file_field">
+                                                <form action="">
+                                                    <input type="file" id="myFile" name="filename">
+                                                    <a class="btn btn-md btn-primary" href="" type="submit">Upload</a>
+                                                </form>
+                                            </div>
+                                            <div class="import-inner-content">
+                                                <p>Each row should contain a first name, last name, and email address. Rows without valid email addresses will not be imported. Duplicates will also not be imported.</p>
+                                                <span style="display:block;"><img src="assets/images/contactcsvfile.gif" alt="" style="width:436px;height:122px;"></span>
+                                            </div> -->
+                                            <h5 class="ManageTag-heading ">Tags</h5>
+                                            <h6>Tag</h6>
+
+                                            <div class="ManageTag-bg" *ngFor="let tags of tags">
+                                                <p>{{tags.tags}}<span><a routerLink="/edit-tag/{{tags.id}}/1"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:#378805;"></i></a> <a  mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top" (confirm)="deleteTags(tags.id)" (cancel)="cancelClicked = true"><i class="fa fa-trash" aria-hidden="true" style="color: #FF0000"></i></a></span>
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-4">
+                                <app-contact-task-sidebar></app-contact-task-sidebar>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

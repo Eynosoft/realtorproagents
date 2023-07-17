@@ -1,0 +1,13 @@
+<div *ngIf="success; else myFlagFalse;">
+<!-- header -->
+<app-header></app-header>
+
+<!-- routes will be rendered here -->
+<router-outlet></router-outlet>
+
+<!-- footer -->
+<app-footer></app-footer>
+</div>
+<ng-template #myFlagFalse>
+    <app-commingsoon></app-commingsoon>
+      </ng-template>

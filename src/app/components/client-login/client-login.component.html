@@ -1,0 +1,85 @@
+<section class="ptb-100 inner_banner_section blue-bg">
+    <div class="container">
+        <div
+            class="row align-items-center justify-content-lg-between justify-content-md-center justify-content-sm-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="text-white py-5">
+                    <h1 class="text-white">{{title}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+<section class="section section_contactForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-6">
+                
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="email" [ngClass]="{'is-invalid' : submitted && client_login.email.errors}" placeholder="Email">
+                        </div>
+                        <div *ngIf="submitted && client_login.email.errors" class="text-danger">
+                            <div *ngIf="client_login.email.errors.required">Email is required</div>
+                            <div *ngIf="client_login.email.errors.email">Email is invalid</div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{'is-invalid' : submitted && client_login.password.errors}" placeholder="Password">
+                        </div>
+                        <div *ngIf="submitted && client_login.password.errors" class="text-danger">
+                            <div *ngIf="client_login.password.errors.required">Password is required</div>
+                            
+                            <div *ngIf="client_login.password.errors.maxlength">Password must not exceed 100 characters</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+                
+        </div>
+    </div>
+</section>
+<section class="section section_MFS_section">
+    <div class="container">
+        <div class="row MFS_grid_list align-items-center">
+            <div class="col-md-6 col-sm-6">
+                <h3>Responsive Websites and Responsive IDX for Mobile Friendly Solutions</h3>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in some form, by injected humour, or randomised words which don't look even slightly
+                    believable.</p>
+                <div class="action-btns mt-4">
+                    <a href="#" class="btn btn-brand-03 btn-lg">Get Free Trial </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="img-wrap">
+                    <img src="assets/images/cta-new.svg" alt="hosting" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section section_cta_section blue-bg">
+    <div class="container">
+        <div class="row themes_grid_list align-items-center">
+            <div class="col-md-12">
+                <h2>What are you waiting for?<br />Get started with us today!</h2>
+                <p class="lead">15-Day Free Trial</p>
+                <div class="action-btns mt-4">
+                    <a href="#" class="btn btn-brand-03 btn-lg" tabindex="0">Start Free Trial</a>
+                </div>
+                <p class="small">No Obligation - No Credit Card Required</p>
+            </div>
+        </div>
+    </div>
+</section>

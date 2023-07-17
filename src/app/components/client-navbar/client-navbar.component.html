@@ -1,0 +1,72 @@
+<section class="inner_banner_section blue-bg dashboard_container">
+    <div class="container">
+        <div class="row align-items-center justify-content-lg-between justify-content-md-center justify-content-sm-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="text-white pb-3 db_page_banner">
+                    <h1 class="text-white heading-banner">{{title}}</h1>
+
+                </div>
+                <div class="dashboard_menu_list">
+                    <button class="db_mob_menu" (click)="clickEvent()" value="Show DIV" id="bt">Dashboard Menu</button>
+                    <div id="cont" class="mobile-menu-list" [ngClass]="customClass ? 'current' : ''">
+                        <ul class="db_menus">
+                            <li><a routerLink="/select-theme-page"><span><img src="assets/images/icons/programing.png" alt=""></span> <p>Website</p></a></li>
+                            <li><a class="nav-link" routerLink="/create-listings" routerLinkActive="active"><span><img src="assets/images/icons/shopping-list.png" alt=""></span><p>listing</p> </a></li>
+                            <li><a class="nav-link" routerLink="/leads"><span><img src="assets/images/icons/lead.png" alt=""></span><p>leads</p></a></li>
+                            <li><a class="nav-link" routerLink="/contacts"><span><img src="assets/images/icons/phone-call.png" alt=""></span><p>Contact</p></a></li>
+                            <li><a routerLink="/calendar"><span><img src="assets/images/icons/calendar.png" alt=""></span><p>Calender</p></a></li>
+                            <li><a routerLink="/view-tasks"><span><img src="assets/images/icons/tasks.png" alt=""></span><p>Task</p></a></li>
+                            <li><a routerLink="/newsletter"><span><img src="assets/images/icons/news.png" alt=""></span><p>Newsletter</p></a></li>
+                            <li><a routerLink="/marketing"><span><img src="assets/images/icons/advertising.png" alt=""></span><p>marketing</p></a></li>
+                            <li><a routerLink="/learn-more"><span><img src="assets/images/icons/social-media.png" alt=""></span><p>Social</p></a></li>
+                            <li><a routerLink="/help"><span><img src="assets/images/icons/question.png" alt=""></span><p>Help</p></a></li>
+                            <li><a routerLink="/profile"><span><img src="assets/images/icons/user.png" alt=""></span><p>profile</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+<section class="py-4 pt-5  db_first_panel_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        Road Map
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <a routerLink="/road-map" class="btn btn-md btn-brand-03">Road Map</a>
+                        <strong>Configure Your Website</strong>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        Sign Up Today
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <a routerLink="/idx-membership" class="btn btn-md btn-brand-03">Sign Up</a>
+                        <strong>Configure Your Website</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-md-8 offset-md-2 text-center">
+                <div class="paragraph">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et distinctio obcaecati perferendis libero! Nesciunt quod accusamus repudiandae aliquam quibusdam id amet sequi at voluptas, esse facere suscipit nemo aliquid quam?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

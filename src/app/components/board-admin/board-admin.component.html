@@ -1,0 +1,90 @@
+<div class="container">
+    <header class="jumbotron">
+      <p>{{ content }}</p>
+    </header>
+  </div>
+  <section class="ptb-100 inner_banner_section blue-bg">
+    <div class="container">
+        <div
+            class="row align-items-center justify-content-lg-between justify-content-md-center justify-content-sm-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="text-white py-5">
+                    <h1 class="text-white">{{title}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+<section class="section section_contactForm">
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-md-9 col-sm-6">
+                <div class="container" *ngIf="currentUser; else loggedOut">
+                    <header class="jumbotron">
+                      <h3>
+                        <strong>{{ currentUser.username }}</strong> Profile
+                      </h3>
+                    </header>
+                    <p>
+                      <strong>Token:</strong>
+                      {{ currentUser.accessToken.substring(0, 20) }} ...
+                      {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+                    </p>
+                    <p>
+                      <strong>Email:</strong>
+                      {{ currentUser.email }}
+                    </p>
+                    <strong>Roles:</strong>
+                    <ul>
+                      <li *ngFor="let role of currentUser.roles">
+                        {{ role }}
+                      </li>
+                    </ul>
+                  </div>
+            </div>-->
+            <ng-template #loggedOut>
+                Please login.
+              </ng-template>    
+        </div>
+    </div>
+</section>
+<section class="section section_MFS_section">
+    <div class="container">
+        <div class="row MFS_grid_list align-items-center">
+            <div class="col-md-6 col-sm-6">
+                <h3>Responsive Websites and Responsive IDX for Mobile Friendly Solutions</h3>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in some form, by injected humour, or randomised words which don't look even slightly
+                    believable.</p>
+                <div class="action-btns mt-4">
+                    <a href="#" class="btn btn-brand-03 btn-lg">Get Free Trial </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="img-wrap">
+                    <img src="assets/images/cta-new.svg" alt="hosting" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section section_cta_section blue-bg">
+    <div class="container">
+        <div class="row themes_grid_list align-items-center">
+            <div class="col-md-12">
+                <h2>What are you waiting for?<br />Get started with us today!</h2>
+                <p class="lead">15-Day Free Trial</p>
+                <div class="action-btns mt-4">
+                    <a href="#" class="btn btn-brand-03 btn-lg" tabindex="0">Start Free Trial</a>
+                </div>
+                <p class="small">No Obligation - No Credit Card Required</p>
+            </div>
+        </div>
+    </div>
+</section>  
